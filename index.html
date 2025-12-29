@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Vishal Learning – Class 1 to 12 Education</title>
+<title>Vishal Learning – Class 6 to 10 Education</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -13,7 +13,7 @@ select,textarea{padding:10px;margin:6px;font-size:16px}
 textarea{width:90%;max-width:520px;height:100px}
 button{padding:12px 22px;font-size:16px;background:#198754;color:#fff;border:none;border-radius:5px;cursor:pointer}
 button:hover{background:#145c32;}
-#responseBox{margin-top:20px;font-weight:bold;white-space:pre-line}
+#responseBox{margin-top:20px;font-weight:bold;white-space:pre-line;text-align:left}
 footer{background:#222;color:#fff;padding:15px;margin-top:30px}
 footer a{color:#9ecbff;text-decoration:none;margin:0 6px}
 </style>
@@ -22,32 +22,25 @@ footer a{color:#9ecbff;text-decoration:none;margin:0 6px}
 
 <header>
 <h1>Vishal Learning</h1>
-<p>Free Education Platform for Class 1 to 12 Students</p>
+<p>Free Education Platform for Class 6 to 10 Students</p>
 </header>
 
 <section>
-<h2>Explain Any Topic (Class 1–12)</h2>
+<h2>Explain Any Topic (Class 6–10)</h2>
 <p>Select class & subject, then type any topic name.</p>
 
 <select id="classSelect">
-<option>1</option><option>2</option><option>3</option><option>4</option>
-<option>5</option><option>6</option><option>7</option><option>8</option>
-<option>9</option><option>10</option><option>11</option><option>12</option>
+<option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
 </select>
 
 <select id="subjectSelect">
 <option>Physics</option>
 <option>Chemistry</option>
 <option>Math</option>
-<option>Biology</option>
-<option>Computer Science</option>
-<option>General Knowledge</option>
-<option>Sanskrit</option>
-<option>Coding</option>
 </select>
 
 <br>
-<textarea id="topicInput" placeholder="Example: Newton's Laws of Motion"></textarea><br>
+<textarea id="topicInput" placeholder="Example: Newton's Laws"></textarea><br>
 <button onclick="explainTopic()">Explain Topic</button>
 <p id="responseBox"></p>
 </section>
@@ -60,29 +53,51 @@ footer a{color:#9ecbff;text-decoration:none;margin:0 6px}
 </p>
 <p>Created by Vishal Shukla | Powered by GitHub Pages</p>
 </footer>
-
 <script>
-// Real explanation example using demoDatabase
+// Real explanation database
 const demoDatabase = {
   "Physics": {
-    "Class 10": {
-      "Newton's Laws": `Newton’s First Law (Law of Inertia):
-Ek object tab tak rest me rahega ya uniform motion karega jab tak uspe koi external force na lage.
-Example: Ek stationary ball tab tak nahi giregi jab tak usko push na kiya jaye.
+    "Class 6": {
+      "Motion": "Motion is the movement of objects. Example: a car moving on road.",
+      "Force": "Force is a push or pull acting on an object. Example: Pushing a door."
+    },
+    "Class 7": {
+      "Work": "Work = Force × Distance. Example: pushing a box 5 m with 10 N force = 50 J.",
+      "Energy": "Energy is the capacity to do work. Example: Kinetic and potential energy."
+    },
+    "Class 8": {
+      "Light": "Light travels in straight lines. Reflection & refraction explained with examples.",
+      "Sound": "Sound is vibration traveling through a medium. Frequency, pitch explained."
+    },
+    "Class 9": {
+      "Laws of Motion": `Newton’s First Law (Inertia):
+Object remains at rest or uniform motion unless acted upon by force.
 
-Newton’s Second Law (F = ma):
-Force object ke mass aur acceleration ke product ke barabar hota hai.
-Example: 5 kg ka object agar 2 m/s² se accelerate ho raha hai to Force = 5 × 2 = 10 N.
+Newton’s Second Law (F=ma):
+Force = mass × acceleration
 
 Newton’s Third Law (Action-Reaction):
-Har action ke liye equal aur opposite reaction hoti hai.
-Example: Jab aap jump karte ho, to zameen aapko opposite direction me push karti hai.`
+Every action has equal and opposite reaction.`,
+      "Gravitation": "Gravitational force between two masses is calculated using F = G(m1*m2)/r²."
+    },
+    "Class 10": {
+      "Electricity": "Current, voltage, resistance, Ohm's law explained with examples.",
+      "Magnetism": "Magnetic fields, poles, electromagnetism and EM induction explained."
     }
   },
-  "Coding": {
-    "Class 12": {
-      "Functions": "Functions are reusable blocks of code. Example: function add(a,b){return a+b;}"
-    }
+  "Chemistry": {
+    "Class 6": {"Matter": "Matter is anything that has mass and occupies space."},
+    "Class 7": {"Atoms": "Atoms are the smallest units of matter; example: hydrogen atom."},
+    "Class 8": {"Chemical Reactions": "Types of chemical reactions with examples: combination, decomposition, displacement."},
+    "Class 9": {"Periodic Table": "Elements arranged by atomic number; groups & periods explained."},
+    "Class 10": {"Acids & Bases": "pH scale, examples, neutralization reactions explained."}
+  },
+  "Math": {
+    "Class 6": {"Fractions": "Fractions explained with numerator, denominator and examples."},
+    "Class 7": {"Algebra": "Basic algebraic operations with variables, expressions and examples."},
+    "Class 8": {"Geometry": "Shapes, angles, theorems, perimeter, area explained."},
+    "Class 9": {"Pythagoras Theorem": "In right triangle, a² + b² = c². Example provided."},
+    "Class 10": {"Quadratic Equations": "Solving ax²+bx+c=0 step by step with examples."}
   }
 };
 
@@ -101,6 +116,6 @@ function explainTopic(){
   }
 }
 </script>
-
 </body>
 </html>
+"Added Class 6–10 Math, Physics, Chemistry real topics"
