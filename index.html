@@ -2,35 +2,35 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Vishal Learning – Class 6 to 10 Education</title>
+<title>Vishal Learning – Part 1</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <style>
 body{font-family:Arial,sans-serif;background:#f4f6f8;margin:0;text-align:center}
-header{background:#0a58ca;color:#fff;padding:20px}
+header{background:#0a58ca;color:#fff;padding:25px}
 section{padding:20px}
 select,textarea{padding:10px;margin:6px;font-size:16px}
-textarea{width:90%;max-width:520px;height:100px}
+textarea{width:90%;max-width:520px;height:120px}
 button{padding:12px 22px;font-size:16px;background:#198754;color:#fff;border:none;border-radius:5px;cursor:pointer}
 button:hover{background:#145c32;}
-#responseBox{margin-top:20px;font-weight:bold;white-space:pre-line;text-align:left}
-footer{background:#222;color:#fff;padding:15px;margin-top:30px}
-footer a{color:#9ecbff;text-decoration:none;margin:0 6px}
+#responseBox{margin-top:20px;text-align:left;max-width:700px;margin-left:auto;margin-right:auto;background:#fff;padding:15px;border-radius:6px;white-space:pre-line;}
+footer{background:#222;color:#fff;padding:15px;margin-top:30px;}
+footer a{color:#9ecbff;text-decoration:none;margin:0 6px;}
 </style>
 </head>
 <body>
 
 <header>
-<h1>Vishal Learning</h1>
-<p>Free Education Platform for Class 6 to 10 Students</p>
+<h1>📘 Vishal Learning</h1>
+<p>Free Education Platform – Part 1 (Classes 6–7)</p>
 </header>
 
 <section>
-<h2>Explain Any Topic (Class 6–10)</h2>
-<p>Select class & subject, then type any topic name.</p>
+<h2>Explain Any Topic</h2>
+<p>Select class & subject, then type topic name.</p>
 
 <select id="classSelect">
-<option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+<option>6</option>
+<option>7</option>
 </select>
 
 <select id="subjectSelect">
@@ -40,64 +40,57 @@ footer a{color:#9ecbff;text-decoration:none;margin:0 6px}
 </select>
 
 <br>
-<textarea id="topicInput" placeholder="Example: Newton's Laws"></textarea><br>
+<textarea id="topicInput" placeholder="Example: Motion"></textarea><br>
 <button onclick="explainTopic()">Explain Topic</button>
-<p id="responseBox"></p>
+
+<div id="responseBox"></div>
 </section>
 
 <footer>
-<p>
-<a href="about.html">About Us</a> |
-<a href="contact.html">Contact Us</a> |
-<a href="privacy.html">Privacy Policy</a>
-</p>
+<p><a href="about.html">About Us</a> | <a href="contact.html">Contact Us</a> | <a href="privacy.html">Privacy Policy</a></p>
 <p>Created by Vishal Shukla | Powered by GitHub Pages</p>
 </footer>
+
 <script>
-// Real explanation database
-const demoDatabase = {
-  "Physics": {
+const database = {
+  Physics: {
     "Class 6": {
-      "Motion": "Motion is the movement of objects. Example: a car moving on road.",
-      "Force": "Force is a push or pull acting on an object. Example: Pushing a door."
+      "Motion": `Motion is the change in position of an object with time.
+Types: rectilinear, circular, periodic.
+Example: A car moving on a road (rectilinear), clock hands (circular).`,
+      "Force": `Force is a push or pull that can change motion or shape.
+Example: Pushing a door to open it.`
     },
     "Class 7": {
-      "Work": "Work = Force × Distance. Example: pushing a box 5 m with 10 N force = 50 J.",
-      "Energy": "Energy is the capacity to do work. Example: Kinetic and potential energy."
-    },
-    "Class 8": {
-      "Light": "Light travels in straight lines. Reflection & refraction explained with examples.",
-      "Sound": "Sound is vibration traveling through a medium. Frequency, pitch explained."
-    },
-    "Class 9": {
-      "Laws of Motion": `Newton’s First Law (Inertia):
-Object remains at rest or uniform motion unless acted upon by force.
-
-Newton’s Second Law (F=ma):
-Force = mass × acceleration
-
-Newton’s Third Law (Action-Reaction):
-Every action has equal and opposite reaction.`,
-      "Gravitation": "Gravitational force between two masses is calculated using F = G(m1*m2)/r²."
-    },
-    "Class 10": {
-      "Electricity": "Current, voltage, resistance, Ohm's law explained with examples.",
-      "Magnetism": "Magnetic fields, poles, electromagnetism and EM induction explained."
+      "Work": `Work = Force × Distance
+Example: Pushing a box 5m with 10N force → Work = 50J.`,
+      "Energy": `Energy is the capacity to do work.
+Types: kinetic, potential, thermal, etc.`
     }
   },
-  "Chemistry": {
-    "Class 6": {"Matter": "Matter is anything that has mass and occupies space."},
-    "Class 7": {"Atoms": "Atoms are the smallest units of matter; example: hydrogen atom."},
-    "Class 8": {"Chemical Reactions": "Types of chemical reactions with examples: combination, decomposition, displacement."},
-    "Class 9": {"Periodic Table": "Elements arranged by atomic number; groups & periods explained."},
-    "Class 10": {"Acids & Bases": "pH scale, examples, neutralization reactions explained."}
+  Chemistry: {
+    "Class 6": {
+      "Matter": `Matter is anything that has mass and occupies space.
+States: solid, liquid, gas.`
+    },
+    "Class 7": {
+      "Atoms": `Atoms are the smallest unit of matter.
+They combine to form molecules.`
+    }
   },
-  "Math": {
-    "Class 6": {"Fractions": "Fractions explained with numerator, denominator and examples."},
-    "Class 7": {"Algebra": "Basic algebraic operations with variables, expressions and examples."},
-    "Class 8": {"Geometry": "Shapes, angles, theorems, perimeter, area explained."},
-    "Class 9": {"Pythagoras Theorem": "In right triangle, a² + b² = c². Example provided."},
-    "Class 10": {"Quadratic Equations": "Solving ax²+bx+c=0 step by step with examples."}
+  Math: {
+    "Class 6": {
+      "Fractions": `A fraction represents part of a whole.
+Example: 1/2, 3/4`,
+      "Decimals": `Decimals are numbers with a decimal point.
+Example: 0.5, 1.25`
+    },
+    "Class 7": {
+      "Algebra": `Algebra deals with variables and expressions.
+Example: x + 5 = 10 → x = 5`,
+      "Geometry": `Geometry studies shapes, sizes, and properties.
+Example: Triangle, circle, rectangle.`
+    }
   }
 };
 
@@ -109,13 +102,13 @@ function explainTopic(){
 
   if(topic===""){ box.innerText="Please type a topic name."; return; }
 
-  if(demoDatabase[sub] && demoDatabase[sub]["Class "+cls] && demoDatabase[sub]["Class "+cls][topic]){
-    box.innerText = demoDatabase[sub]["Class "+cls][topic];
+  if(database[sub] && database[sub]["Class "+cls] && database[sub]["Class "+cls][topic]){
+    box.innerText = database[sub]["Class "+cls][topic];
   } else {
-    box.innerText = "Sorry, topic '"+topic+"' not available yet.";
+    box.innerText = "❌ Topic '"+topic+"' not added yet.\nWe will add it soon.";
   }
 }
 </script>
+
 </body>
 </html>
-"Added Class 6–10 Math, Physics, Chemistry real topics"
