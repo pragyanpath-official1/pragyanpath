@@ -2,81 +2,141 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Vishal Learning - AI Education</title>
+<title>Vishal Learning – Class 1 to 12 Education</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
-body{font-family:Arial;background:#f4f6f8;margin:0;text-align:center}
-header{background:#0a58ca;color:#fff;padding:20px}
-section{padding:20px}
-select,textarea{padding:10px;margin:6px;font-size:16px}
-textarea{width:90%;max-width:520px;height:90px}
-button{padding:12px 20px;font-size:16px;background:#198754;color:#fff;border:none;border-radius:5px;cursor:pointer}
-#responseBox{margin-top:20px;font-weight:bold;white-space:pre-line}
-footer{background:#222;color:#fff;padding:15px;margin-top:30px}
+body{
+  font-family: Arial, sans-serif;
+  background:#f4f6f8;
+  margin:0;
+  text-align:center;
+}
+header{
+  background:#0a58ca;
+  color:#fff;
+  padding:20px;
+}
+section{
+  padding:20px;
+}
+select, textarea{
+  padding:10px;
+  margin:6px;
+  font-size:16px;
+}
+textarea{
+  width:90%;
+  max-width:520px;
+  height:100px;
+}
+button{
+  padding:12px 22px;
+  font-size:16px;
+  background:#198754;
+  color:#fff;
+  border:none;
+  border-radius:5px;
+  cursor:pointer;
+}
+button:hover{
+  background:#145c32;
+}
+#responseBox{
+  margin-top:20px;
+  font-weight:bold;
+  white-space:pre-line;
+}
+footer{
+  background:#222;
+  color:#fff;
+  padding:15px;
+  margin-top:30px;
+}
+footer a{
+  color:#9ecbff;
+  text-decoration:none;
+  margin:0 6px;
+}
 </style>
 </head>
 
 <body>
 
+<!-- HEADER = HOMEPAGE INTRO -->
 <header>
-<h1>Vishal Learning</h1>
-<p>Class 1–12 Smart Education Platform</p>
+  <h1>Vishal Learning</h1>
+  <p>Free Education Platform for Class 1 to 12 Students</p>
 </header>
 
+<!-- MAIN HOMEPAGE CONTENT -->
 <section>
-<h2>Explain Any Topic</h2>
+  <h2>Explain Any Topic (Class 1–12)</h2>
+  <p>Select class & subject, then type any topic name.</p>
 
-<select id="classSelect">
-<option>1</option><option>2</option><option>3</option><option>4</option>
-<option>5</option><option>6</option><option>7</option><option>8</option>
-<option>9</option><option>10</option><option>11</option><option>12</option>
-</select>
+  <!-- CLASS DROPDOWN -->
+  <select id="classSelect">
+    <option>1</option><option>2</option><option>3</option><option>4</option>
+    <option>5</option><option>6</option><option>7</option><option>8</option>
+    <option>9</option><option>10</option><option>11</option><option>12</option>
+  </select>
 
-<select id="subjectSelect">
-<option>Physics</option>
-<option>Chemistry</option>
-<option>Math</option>
-<option>Biology</option>
-<option>Computer Science</option>
-<option>General Knowledge</option>
-<option>Sanskrit</option>
-</select>
+  <!-- SUBJECT DROPDOWN -->
+  <select id="subjectSelect">
+    <option>Physics</option>
+    <option>Chemistry</option>
+    <option>Math</option>
+    <option>Biology</option>
+    <option>Computer Science</option>
+    <option>General Knowledge</option>
+    <option>Sanskrit</option>
+    <option>Coding</option>
+  </select>
 
-<br>
-<textarea id="topicInput" placeholder="Type ANY topic (spelling doesn't matter)"></textarea><br>
-<button onclick="explainTopic()">Explain Topic</button>
+  <br>
 
-<p id="responseBox"></p>
+  <!-- TOPIC INPUT -->
+  <textarea id="topicInput" placeholder="Example: Newton's Laws of Motion"></textarea>
+  <br>
+
+  <button onclick="explainTopic()">Explain Topic</button>
+
+  <p id="responseBox"></p>
 </section>
 
+<!-- FOOTER WITH PAGES -->
 <footer>
-<p>Created by Vishal Shukla | Powered by GitHub Pages</p>
+  <p>
+    <a href="about.html">About Us</a> |
+    <a href="contact.html">Contact Us</a> |
+    <a href="privacy.html">Privacy Policy</a>
+  </p>
+  <p>Created by Vishal Shukla | Powered by GitHub Pages</p>
 </footer>
 
+<!-- SCRIPT -->
 <script>
 function explainTopic(){
-const cls=document.getElementById("classSelect").value;
-const sub=document.getElementById("subjectSelect").value;
-const topic=document.getElementById("topicInput").value.trim();
-const box=document.getElementById("responseBox");
+  const cls = document.getElementById("classSelect").value;
+  const sub = document.getElementById("subjectSelect").value;
+  const topic = document.getElementById("topicInput").value.trim();
+  const box = document.getElementById("responseBox");
 
-if(topic===""){
-box.innerText="Please type a topic first.";
-return;
-}
+  if(topic === ""){
+    box.innerText = "Please type a topic name.";
+    return;
+  }
 
-box.innerText =
-"Explanation for Class "+cls+" "+sub+" topic '"+topic+"':\n\n"+
-"This topic is explained in a simple and student-friendly way.\n"+
-"It covers basic concepts, examples, and easy understanding\n"+
-"according to Class "+cls+" syllabus.\n\n"+
-"Suitable for revision, exams, and concept clarity.\n\n"+
-"(Demo Smart AI Mode – No API, No Risk)";
+  box.innerText =
+    "Class " + cls + " – " + sub + "\n\n" +
+    "Topic: " + topic + "\n\n" +
+    "Explanation:\n" +
+    "This topic is explained in a clear, step-by-step and student-friendly manner. " +
+    "It covers basic definitions, important points, examples and concept clarity " +
+    "according to the Class " + cls + " school syllabus. " +
+    "This explanation is useful for understanding, revision and exam preparation.";
 }
 </script>
 
 </body>
 </html>
-
-
-Final working Class 1–12 smart topic explainer
