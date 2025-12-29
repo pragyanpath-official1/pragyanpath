@@ -6,135 +6,99 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-body{
-  font-family: Arial, sans-serif;
-  background:#f4f6f8;
-  margin:0;
-  text-align:center;
-}
-header{
-  background:#0a58ca;
-  color:#fff;
-  padding:20px;
-}
-section{
-  padding:20px;
-}
-select, textarea{
-  padding:10px;
-  margin:6px;
-  font-size:16px;
-}
-textarea{
-  width:90%;
-  max-width:520px;
-  height:100px;
-}
-button{
-  padding:12px 22px;
-  font-size:16px;
-  background:#198754;
-  color:#fff;
-  border:none;
-  border-radius:5px;
-  cursor:pointer;
-}
-button:hover{
-  background:#145c32;
-}
-#responseBox{
-  margin-top:20px;
-  font-weight:bold;
-  white-space:pre-line;
-}
-footer{
-  background:#222;
-  color:#fff;
-  padding:15px;
-  margin-top:30px;
-}
-footer a{
-  color:#9ecbff;
-  text-decoration:none;
-  margin:0 6px;
-}
+body{font-family:Arial,sans-serif;background:#f4f6f8;margin:0;text-align:center}
+header{background:#0a58ca;color:#fff;padding:20px}
+section{padding:20px}
+select,textarea{padding:10px;margin:6px;font-size:16px}
+textarea{width:90%;max-width:520px;height:100px}
+button{padding:12px 22px;font-size:16px;background:#198754;color:#fff;border:none;border-radius:5px;cursor:pointer}
+button:hover{background:#145c32;}
+#responseBox{margin-top:20px;font-weight:bold;white-space:pre-line}
+footer{background:#222;color:#fff;padding:15px;margin-top:30px}
+footer a{color:#9ecbff;text-decoration:none;margin:0 6px}
 </style>
 </head>
-
 <body>
 
-<!-- HEADER = HOMEPAGE INTRO -->
 <header>
-  <h1>Vishal Learning</h1>
-  <p>Free Education Platform for Class 1 to 12 Students</p>
+<h1>Vishal Learning</h1>
+<p>Free Education Platform for Class 1 to 12 Students</p>
 </header>
 
-<!-- MAIN HOMEPAGE CONTENT -->
 <section>
-  <h2>Explain Any Topic (Class 1–12)</h2>
-  <p>Select class & subject, then type any topic name.</p>
+<h2>Explain Any Topic (Class 1–12)</h2>
+<p>Select class & subject, then type any topic name.</p>
 
-  <!-- CLASS DROPDOWN -->
-  <select id="classSelect">
-    <option>1</option><option>2</option><option>3</option><option>4</option>
-    <option>5</option><option>6</option><option>7</option><option>8</option>
-    <option>9</option><option>10</option><option>11</option><option>12</option>
-  </select>
+<select id="classSelect">
+<option>1</option><option>2</option><option>3</option><option>4</option>
+<option>5</option><option>6</option><option>7</option><option>8</option>
+<option>9</option><option>10</option><option>11</option><option>12</option>
+</select>
 
-  <!-- SUBJECT DROPDOWN -->
-  <select id="subjectSelect">
-    <option>Physics</option>
-    <option>Chemistry</option>
-    <option>Math</option>
-    <option>Biology</option>
-    <option>Computer Science</option>
-    <option>General Knowledge</option>
-    <option>Sanskrit</option>
-    <option>Coding</option>
-  </select>
+<select id="subjectSelect">
+<option>Physics</option>
+<option>Chemistry</option>
+<option>Math</option>
+<option>Biology</option>
+<option>Computer Science</option>
+<option>General Knowledge</option>
+<option>Sanskrit</option>
+<option>Coding</option>
+</select>
 
-  <br>
-
-  <!-- TOPIC INPUT -->
-  <textarea id="topicInput" placeholder="Example: Newton's Laws of Motion"></textarea>
-  <br>
-
-  <button onclick="explainTopic()">Explain Topic</button>
-
-  <p id="responseBox"></p>
+<br>
+<textarea id="topicInput" placeholder="Example: Newton's Laws of Motion"></textarea><br>
+<button onclick="explainTopic()">Explain Topic</button>
+<p id="responseBox"></p>
 </section>
 
-<!-- FOOTER WITH PAGES -->
 <footer>
-  <p>
-    <a href="about.html">About Us</a> |
-    <a href="contact.html">Contact Us</a> |
-    <a href="privacy.html">Privacy Policy</a>
-  </p>
-  <p>Created by Vishal Shukla | Powered by GitHub Pages</p>
+<p>
+<a href="about.html">About Us</a> |
+<a href="contact.html">Contact Us</a> |
+<a href="privacy.html">Privacy Policy</a>
+</p>
+<p>Created by Vishal Shukla | Powered by GitHub Pages</p>
 </footer>
 
-<!-- SCRIPT -->
 <script>
-function explainTopic(){
-  const cls = document.getElementById("classSelect").value;
-  const sub = document.getElementById("subjectSelect").value;
-  const topic = document.getElementById("topicInput").value.trim();
-  const box = document.getElementById("responseBox");
+// Real explanation example using demoDatabase
+const demoDatabase = {
+  "Physics": {
+    "Class 10": {
+      "Newton's Laws": `Newton’s First Law (Law of Inertia):
+Ek object tab tak rest me rahega ya uniform motion karega jab tak uspe koi external force na lage.
+Example: Ek stationary ball tab tak nahi giregi jab tak usko push na kiya jaye.
 
-  if(topic === ""){
-    box.innerText = "Please type a topic name.";
-    return;
+Newton’s Second Law (F = ma):
+Force object ke mass aur acceleration ke product ke barabar hota hai.
+Example: 5 kg ka object agar 2 m/s² se accelerate ho raha hai to Force = 5 × 2 = 10 N.
+
+Newton’s Third Law (Action-Reaction):
+Har action ke liye equal aur opposite reaction hoti hai.
+Example: Jab aap jump karte ho, to zameen aapko opposite direction me push karti hai.`
+    }
+  },
+  "Coding": {
+    "Class 12": {
+      "Functions": "Functions are reusable blocks of code. Example: function add(a,b){return a+b;}"
+    }
   }
+};
 
-  box.innerText =
-    "Class " + cls + " – " + sub + "\n\n" +
-    "Topic: " + topic + "\n\n" +
-    "Explanation:\n" +
-    "This topic is explained in a clear, step-by-step and student-friendly manner. " +
-    "It covers basic definitions, important points, examples and concept clarity " +
-    "according to the Class " + cls + " school syllabus. " +
-    "This explanation is useful for understanding, revision and exam preparation.";
+function explainTopic(){
+  const cls=document.getElementById("classSelect").value;
+  const sub=document.getElementById("subjectSelect").value;
+  const topic=document.getElementById("topicInput").value.trim();
+  const box=document.getElementById("responseBox");
+
+  if(topic===""){ box.innerText="Please type a topic name."; return; }
+
+  if(demoDatabase[sub] && demoDatabase[sub]["Class "+cls] && demoDatabase[sub]["Class "+cls][topic]){
+    box.innerText = demoDatabase[sub]["Class "+cls][topic];
+  } else {
+    box.innerText = "Sorry, topic '"+topic+"' not available yet.";
+  }
 }
 </script>
 
