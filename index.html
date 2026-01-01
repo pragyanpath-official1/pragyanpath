@@ -2,54 +2,913 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Vishal Learning – Class 6 to 10</title>
+<title>PragyanPath.ai – Smart Learning Portal</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-body{font-family:Arial,sans-serif;background:#f4f6f8;margin:0;text-align:center}
-header{background:#0a58ca;color:#fff;padding:25px}
-section{padding:20px}
-select,textarea{padding:10px;margin:6px;font-size:16px}
-textarea{width:90%;max-width:520px;height:120px}
-button{padding:12px 22px;font-size:16px;background:#198754;color:#fff;border:none;border-radius:5px;cursor:pointer}
-button:hover{background:#145c32}
-#responseBox{
-  margin-top:20px;
-  max-width:800px;
-  margin:auto;
-  background:#d1ecf1;
-  padding:18px;
-  border-left:6px solid #0dcaf0;
-  text-align:left;
-  white-space:pre-line;
+body{
+  font-family:Arial,sans-serif;
+  margin:0;
+  background:#eef6ff;
+}
+header{
+  background:linear-gradient(135deg,#000,#0a58ca,#38b6ff);
+  color:white;
+  padding:25px;
+  text-align:center;
+}
+.logo{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:12px;
+  margin-bottom:10px;
+}
+.logo-icon{
+  width:55px;
+  height:55px;
+  border-radius:50%;
+  background:#fff;
+  color:#0a58ca;
+  font-weight:bold;
+  font-size:28px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.logo-text{
+  font-size:26px;
+  font-weight:bold;
+}
+section{text-align:center;padding:20px}
+select,input,button{
+  padding:12px;
+  margin:6px;
+  width:90%;
+  max-width:280px;
   font-size:16px;
+  border-radius:6px;
+  border:1px solid #ccc;
 }
-#availableTopics{
-  margin-top:30px;
-  max-width:800px;
-  margin:auto;
-  background:#fff3cd;
-  padding:15px;
-  border-left:6px solid #ffc107;
+button{
+  background:#198754;
+  color:white;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+}
+button:hover{background:#146c43}
+
+/* Modal / Portal */
+.modal{
+  display:none;
+  position:fixed;
+  top:0;left:0;
+  width:100%;height:100%;
+  background:rgba(0,0,0,0.6);
+  z-index:1000;
+}
+.modal-content{
+  background:#e7f5ff;
+  margin:5% auto;
+  padding:20px;
+  width:92%;
+  max-width:900px;
+  border-left:8px solid #0dcaf0;
+  border-radius:8px;
   text-align:left;
   white-space:pre-line;
-  font-size:15px;
 }
-footer{background:#222;color:#fff;padding:15px;margin-top:30px}
-footer a{color:#9ecbff;text-decoration:none;margin:0 6px}
+.close{
+  float:right;
+  font-size:22px;
+  cursor:pointer;
+  color:red;
+}
+
+/* Footer */
+footer{
+  background:#222;
+  color:white;
+  text-align:center;
+  padding:15px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-icon">PP</div>
+    <div class="logo-text">PragyanPath.ai</div>
+  </div>
+  <p>Smart Learning Portal | Class 9–12, IIT, ITI, Coding</p>
+</header>
+
+<section>
+<h2>Search Important Chapter</h2>
+
+<select id="classSelect">
+<option>9</option><option>10</option><option>11</option><option>12</option>
+<option>IIT</option><option>ITI</option><option>Coding</option>
+</select>
+
+<select id="subjectSelect">
+<option>Physics</option>
+<option>Chemistry</option>
+<option>Math</option>
+<option>Biology</option>
+<option>Computer</option>
+<option>English</option>
+<option>Hindi</option>
+<option>History</option>
+<option>Civics</option>
+<option>Geography</option>
+</select>
+
+<br>
+<input id="topicInput" placeholder="Type chapter name (e.g., Gravitation)">
+<br><br>
+
+<button onclick="openTopic()">🔍 Explain Topic</button>
+</section>
+
+<!-- Modal -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">✖</span>
+    <div id="answerBox"></div>
+  </div>
+</div>
+
+<footer>
+<p>© PragyanPath.ai | Global Learning Platform</p>
+</footer>
+
+<script>
+// Modular database for Part 1
+const database = {
+Physics:{
+"Class 9":{
+"Gravitation":`
+DEFINITION:
+Gravitation is the force of attraction between any two objects with mass.
+
+UNIVERSAL LAW:
+F = G × (m1 × m2) / r²
+
+IMPORTANCE:
+• Keeps planets in orbit
+• Causes tides
+• Gravity holds atmosphere
+
+EXAMPLES:
+• Falling apple
+• Satellite motion
+• Flow of rivers
+`,
+
+"Laws of Motion":`
+Newton's Laws of Motion explained in detail.
+
+1. First Law: Object stays in motion or rest unless acted upon by force.
+2. Second Law: F = m × a
+3. Third Law: Action = Reaction
+
+EXAMPLES:
+• Jumping off ground
+• Car accelerating
+• Rocket launch
+`
+},
+"Class 10":{
+"Electricity":`
+DEFINITION:
+Electricity is the flow of electric charge.
+
+TERMS:
+• Current (I)
+• Voltage (V)
+• Resistance (R)
+
+OHM'S LAW:
+V = I × R
+
+EXAMPLES:
+• Bulb lighting
+• Fan operation
+• Charging devices
+`
+}
+},
+
+Chemistry:{
+"Class 9":{
+"Metals and Non-metals":`
+DEFINITION:
+Metals: shiny, hard, conduct electricity.
+Non-metals: dull, brittle, poor conductors.
+
+EXAMPLES:
+• Iron, Copper
+• Sulphur, Phosphorus
+`
+}
+},
+
+Math:{
+"Class 9":{
+"Pythagoras Theorem":`
+DEFINITION:
+In a right-angled triangle: Hypotenuse² = Base² + Height²
+
+EXAMPLES:
+• 3² + 4² = 5²
+• Ladder against wall
+`
+}
+}
+};
+
+// Open topic portal
+function openTopic(){
+  const cls=document.getElementById("classSelect").value;
+  const sub=document.getElementById("subjectSelect").value;
+  const topic=document.getElementById("topicInput").value.trim();
+  const box=document.getElementById("answerBox");
+
+  if(database[sub] && database[sub]["Class "+cls] && database[sub]["Class "+cls][topic]){
+    box.innerText = database[sub]["Class "+cls][topic];
+  } else {
+    box.innerText = "❌ Topic not added yet.\nIt will be added in next parts.";
+  }
+
+  document.getElementById("modal").style.display="block";
+}
+
+function closeModal(){
+  document.getElementById("modal").style.display="none";
+}
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PragyanPath.ai – Part 2</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{font-family:Arial,sans-serif;margin:0;background:#eef6ff}
+header{background:linear-gradient(135deg,#000,#0a58ca,#38b6ff);color:white;padding:25px;text-align:center}
+.logo{display:flex;justify-content:center;align-items:center;gap:12px;margin-bottom:10px}
+.logo-icon{width:55px;height:55px;border-radius:50%;background:#fff;color:#0a58ca;font-weight:bold;font-size:28px;display:flex;align-items:center;justify-content:center}
+.logo-text{font-size:26px;font-weight:bold}
+section{text-align:center;padding:20px}
+select,input,button{padding:12px;margin:6px;width:90%;max-width:280px;font-size:16px;border-radius:6px;border:1px solid #ccc}
+button{background:#198754;color:white;border:none;border-radius:6px;cursor:pointer}
+button:hover{background:#146c43}
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:1000}
+.modal-content{background:#e7f5ff;margin:5% auto;padding:20px;width:92%;max-width:900px;border-left:8px solid #0dcaf0;border-radius:8px;text-align:left;white-space:pre-line}
+.close{float:right;font-size:22px;cursor:pointer;color:red}
+footer{background:#222;color:white;text-align:center;padding:15px}
 </style>
 </head>
 <body>
 
 <header>
-<h1>📘 Vishal Learning</h1>
-<p>Class 6–10: Physics, Chemistry, Math, Biology, Computer, Hindi, English, Sanskrit</p>
+  <div class="logo">
+    <div class="logo-icon">PP</div>
+    <div class="logo-text">PragyanPath.ai</div>
+  </div>
+  <p>Smart Learning Portal | Class 9–10 Important Chapters + PYQs</p>
 </header>
 
 <section>
-<h2>Explain Any Topic</h2>
+<h2>Search Chapter / PYQ</h2>
 
 <select id="classSelect">
-<option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+<option>9</option><option>10</option>
+</select>
+
+<select id="subjectSelect">
+<option>Physics</option>
+<option>Chemistry</option>
+<option>Math</option>
+<option>Biology</option>
+</select>
+
+<br>
+<input id="topicInput" placeholder="Type chapter name (e.g., Gravitation, Metals)">
+<br><br>
+
+<button onclick="openTopic()">🔍 Explain Topic</button>
+</section>
+
+<!-- Modal / Portal -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">✖</span>
+    <div id="answerBox"></div>
+  </div>
+</div>
+
+<footer>
+<p>© PragyanPath.ai | Free Global Learning Platform</p>
+</footer>
+
+<script>
+// PART 2 DATABASE: Class 9 & 10 important chapters + PYQs
+const database = {
+Physics:{
+"Class 9":{
+"Gravitation":`DEFINITION:
+Gravitation is the force of attraction between objects having mass.
+
+UNIVERSAL LAW:
+F = G × (m1 × m2) / r²
+
+IMPORTANCE:
+• Orbits of planets
+• Tides
+• Atmosphere retention
+
+EXAMPLES:
+• Falling apple
+• Satellite motion
+
+PYQs:
+1. Derive formula for g using Universal Law.
+2. Calculate weight on another planet.`,
+
+"Laws of Motion":`DEFINITION:
+Newton's Laws of Motion govern motion of objects.
+
+1st Law: Inertia.
+2nd Law: F = m × a
+3rd Law: Action = Reaction
+
+EXAMPLES:
+• Car acceleration
+• Jumping off ground
+• Rocket motion
+
+PYQs:
+1. Solve F = ma problems.
+2. Examples of inertia in daily life.`
+},
+"Class 10":{
+"Electricity":`DEFINITION:
+Electricity is the flow of electric charge.
+
+TERMS:
+• Current (I)
+• Voltage (V)
+• Resistance (R)
+
+OHM'S LAW:
+V = I × R
+
+EXAMPLES:
+• Bulb
+• Fan
+• Charging device
+
+PYQs:
+1. Calculate resistance in series circuit.
+2. Solve current-voltage problems.`,
+
+"Magnetism":`DEFINITION:
+Magnetism is a force arising from moving charges.
+
+EXAMPLES:
+• Compass needle
+• Electromagnets
+
+PYQs:
+1. Determine force on current-carrying wire.
+2. Explain earth as a giant magnet.`
+}
+},
+
+Chemistry:{
+"Class 9":{
+"Metals and Non-metals":`DEFINITION:
+Metals: Shiny, hard, ductile, conduct electricity.
+Non-metals: Dull, brittle, poor conductor.
+
+EXAMPLES:
+• Iron, Copper
+• Sulphur, Phosphorus
+
+PYQs:
+1. Identify metals/non-metals from list.
+2. Reactivity series questions.`,
+
+"Atoms":`DEFINITION:
+Atoms are the smallest unit of matter.
+
+EXAMPLES:
+• Hydrogen atom
+• Oxygen atom
+
+PYQs:
+1. Find number of protons/neutrons in isotopes.
+2. Atomic structure questions.`
+},
+"Class 10":{
+"Acids and Bases":`DEFINITION:
+Acids produce H⁺ ions; Bases produce OH⁻ ions.
+
+EXAMPLES:
+• HCl, NaOH
+
+USES:
+• Medicines
+• Cleaning
+• Industry
+
+PYQs:
+1. pH calculation problems.
+2. Neutralisation reactions.`,
+
+"Metals and Non-metals":`DEFINITION:
+See Class 9 explanation, more complex reactions added.
+
+PYQs:
+1. Identify amphoteric oxides.
+2. Reactivity comparison problems.`
+}
+},
+
+Math:{
+"Class 9":{
+"Pythagoras Theorem":`DEFINITION:
+Right-angled triangle: Hypotenuse² = Base² + Perpendicular²
+
+EXAMPLES:
+• 3² + 4² = 5²
+• Ladder problems
+
+PYQs:
+1. Solve Pythagoras in coordinate plane.
+2. Application in real life.`,
+
+"Algebra":`DEFINITION:
+Study of variables and equations.
+
+EXAMPLES:
+• Solve linear equations
+• Factorisation problems
+
+PYQs:
+1. Quadratic factorisation.
+2. Word problems.`
+},
+"Class 10":{
+"Quadratic Equations":`DEFINITION:
+Equation of type ax²+bx+c=0
+
+EXAMPLES:
+• Solve step-by-step
+• Roots, discriminant
+
+PYQs:
+1. Solve quadratic word problems.
+2. Nature of roots questions.`
+}
+},
+
+Biology:{
+"Class 9":{
+"Genetics":`DEFINITION:
+Genetics studies heredity and variation.
+
+EXAMPLES:
+• Mendel's peas
+• Traits inheritance
+
+PYQs:
+1. Monohybrid cross problems.
+2. Punnett square exercises.`
+},
+"Class 10":{
+"Evolution":`DEFINITION:
+Darwin's theory of evolution.
+
+EXAMPLES:
+• Natural selection
+• Survival of fittest
+
+PYQs:
+1. Explain adaptation examples.
+2. Fossil evidence questions.`
+}
+}
+};
+
+// Open topic modal
+function openTopic(){
+  const cls=document.getElementById("classSelect").value;
+  const sub=document.getElementById("subjectSelect").value;
+  const topic=document.getElementById("topicInput").value.trim();
+  const box=document.getElementById("answerBox");
+
+  if(database[sub] && database[sub]["Class "+cls] && database[sub]["Class "+cls][topic]){
+    box.innerText = database[sub]["Class "+cls][topic];
+  } else {
+    box.innerText = "❌ Topic not added yet in PART-2.\nIt will be added in next parts.";
+  }
+
+  document.getElementById("modal").style.display="block";
+}
+
+function closeModal(){
+  document.getElementById("modal").style.display="none";
+}
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PragyanPath.ai – Part 3</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{font-family:Arial,sans-serif;margin:0;background:#eef6ff}
+header{background:linear-gradient(135deg,#000,#0a58ca,#38b6ff);color:white;padding:25px;text-align:center}
+.logo{display:flex;justify-content:center;align-items:center;gap:12px;margin-bottom:10px}
+.logo-icon{width:55px;height:55px;border-radius:50%;background:#fff;color:#0a58ca;font-weight:bold;font-size:28px;display:flex;align-items:center;justify-content:center}
+.logo-text{font-size:26px;font-weight:bold}
+section{text-align:center;padding:20px}
+select,input,button{padding:12px;margin:6px;width:90%;max-width:280px;font-size:16px;border-radius:6px;border:1px solid #ccc}
+button{background:#198754;color:white;border:none;border-radius:6px;cursor:pointer}
+button:hover{background:#146c43}
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:1000}
+.modal-content{background:#e7f5ff;margin:5% auto;padding:20px;width:92%;max-width:900px;border-left:8px solid #0dcaf0;border-radius:8px;text-align:left;white-space:pre-line}
+.close{float:right;font-size:22px;cursor:pointer;color:red}
+footer{background:#222;color:white;text-align:center;padding:15px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-icon">PP</div>
+    <div class="logo-text">PragyanPath.ai</div>
+  </div>
+  <p>Class 11–12 Important Chapters + PYQs | Part 3</p>
+</header>
+
+<section>
+<h2>Search Chapter / PYQ</h2>
+
+<select id="classSelect">
+<option>11</option><option>12</option>
+</select>
+
+<select id="subjectSelect">
+<option>Physics</option>
+<option>Chemistry</option>
+<option>Math</option>
+<option>Biology</option>
+<option>Coding</option>
+<option>IIT Foundation</option>
+<option>ITI Foundation</option>
+</select>
+
+<br>
+<input id="topicInput" placeholder="Type chapter name (Example: Electrostatics, Limits)">
+<br><br>
+
+<button onclick="openTopic()">🔍 Explain Topic</button>
+</section>
+
+<!-- Modal / Portal -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">✖</span>
+    <div id="answerBox"></div>
+  </div>
+</div>
+
+<footer>
+<p>© PragyanPath.ai | Free Global Learning Platform</p>
+</footer>
+
+<script>
+// PART 3 DATABASE: Class 11 & 12 important chapters + PYQs
+const database = {
+Physics:{
+"Class 11":{
+"Electrostatics":`DEFINITION:
+Electrostatics is the study of stationary electric charges.
+
+KEY FORMULAE:
+• Coulomb’s Law: F = k × q1 × q2 / r²
+• Electric field: E = F/q
+
+EXAMPLES:
+• Charged rod attracting paper
+• Van de Graaff generator
+
+PYQs:
+1. Calculate force between charges.
+2. Find electric field intensity at a point.`,
+
+"Kinematics":`DEFINITION:
+Study of motion of objects without considering the causes.
+
+EXAMPLES:
+• Projectile motion
+• Free fall
+
+PYQs:
+1. Solve problems on velocity-time graphs.
+2. Calculate displacement using equations of motion.`
+},
+"Class 12":{
+"Electromagnetic Induction":`DEFINITION:
+Process of inducing EMF in a conductor due to changing magnetic field.
+
+KEY FORMULAE:
+• Faraday’s law: EMF = -dΦ/dt
+• Lenz’s Law: Direction of induced current
+
+EXAMPLES:
+• Electric generator
+• Transformer
+
+PYQs:
+1. Calculate induced EMF.
+2. Solve problems on self-induction.`,
+
+"Optics":`DEFINITION:
+Study of light behavior and properties.
+
+EXAMPLES:
+• Reflection, refraction
+• Lenses and mirrors
+
+PYQs:
+1. Lens formula problem.
+2. Mirror formula calculations.`
+}
+},
+
+Chemistry:{
+"Class 11":{
+"Atomic Structure":`DEFINITION:
+Structure of atom including nucleus, electrons, protons, neutrons.
+
+EXAMPLES:
+• Bohr’s model
+• Quantum numbers
+
+PYQs:
+1. Calculate energy levels.
+2. Determine electronic configuration.`,
+
+"Chemical Bonding":`DEFINITION:
+Formation of bonds between atoms to form molecules.
+
+EXAMPLES:
+• Ionic and covalent bonds
+• Molecular geometry
+
+PYQs:
+1. VSEPR problems.
+2. Hybridisation exercises.`
+},
+"Class 12":{
+"Organic Chemistry":`DEFINITION:
+Study of carbon compounds.
+
+EXAMPLES:
+• Alcohols, Aldehydes, Ketones
+• Hydrocarbons
+
+PYQs:
+1. Reaction mechanism.
+2. Identify functional groups.`,
+
+"Metallurgy":`DEFINITION:
+Study of extraction of metals.
+
+EXAMPLES:
+• Iron extraction
+• Aluminium extraction
+
+PYQs:
+1. Write steps of metallurgy.
+2. Solve ore-related problems.`
+}
+},
+
+Math:{
+"Class 11":{
+"Limits":`DEFINITION:
+Limits study the behavior of functions as input approaches a point.
+
+EXAMPLES:
+• lim x→0 sinx/x
+• lim x→∞ 1/x
+
+PYQs:
+1. Evaluate limits.
+2. Solve L’Hospital problems.`,
+
+"Differentiation":`DEFINITION:
+Derivative represents rate of change.
+
+EXAMPLES:
+• d/dx (x²)
+• d/dx (sinx)
+
+PYQs:
+1. Find derivatives of functions.
+2. Apply differentiation in motion problems.`
+},
+"Class 12":{
+"Integrals":`DEFINITION:
+Integral represents area under curve.
+
+EXAMPLES:
+• ∫x² dx
+• ∫sinx dx
+
+PYQs:
+1. Evaluate definite integrals.
+2. Solve area problems.`
+}
+},
+
+Biology:{
+"Class 11":{
+"Cell Biology":`DEFINITION:
+Study of cell structure and functions.
+
+EXAMPLES:
+• Plant cell organelles
+• Animal cell organelles
+
+PYQs:
+1. Identify organelles.
+2. Functions of cell components.`},
+"Class 12":{
+"Genetics":`DEFINITION:
+Study of heredity patterns and molecular genetics.
+
+EXAMPLES:
+• Mendelian inheritance
+• DNA replication
+
+PYQs:
+1. Solve pedigree problems.
+2. Mutation examples.`}
+},
+
+Coding:{
+"Class 11":{
+"Python Basics":`DEFINITION:
+Introduction to Python programming language.
+
+EXAMPLES:
+• Variables, Loops
+• Functions
+
+PYQs:
+1. Write simple programs.
+2. Trace output of code.`},
+"Class 12":{
+"Data Structures":`DEFINITION:
+Study of arrays, linked lists, stacks, queues.
+
+EXAMPLES:
+• Implement stack using list
+• Queue operations
+
+PYQs:
+1. Solve basic DS problems.
+2. Implement algorithms.`}
+},
+
+"IIT Foundation":{
+"Class 11":{
+"Mechanics":`DEFINITION:
+Study of forces and motion relevant to IIT preparation.
+
+EXAMPLES:
+• Projectile motion
+• Laws of motion
+
+PYQs:
+1. Solve force problems.
+2. Motion calculation exercises.`},
+"Class 12":{
+"Electrostatics":`DEFINITION:
+Advanced IIT-level electrostatics problems.
+
+EXAMPLES:
+• Charge distributions
+• Field intensity calculations
+
+PYQs:
+1. Solve IIT mains-type problems.
+2. Numerical derivations.`}
+},
+
+"ITI Foundation":{
+"Class 11":{
+"Workshop Safety":`DEFINITION:
+Important rules for workshop safety.
+
+EXAMPLES:
+• Fire safety
+• Machine operation precautions
+
+PYQs:
+1. Identify safety hazards.
+2. Safety practice MCQs.`},
+"Class 12":{
+"Electrical Machines":`DEFINITION:
+Study of motors and transformers for ITI exams.
+
+EXAMPLES:
+• Transformer working
+• DC motor principles
+
+PYQs:
+1. Solve basic electrical machine problems.
+2. Identify components.`}
+}
+};
+
+// Open topic modal
+function openTopic(){
+  const cls=document.getElementById("classSelect").value;
+  const sub=document.getElementById("subjectSelect").value;
+  const topic=document.getElementById("topicInput").value.trim();
+  const box=document.getElementById("answerBox");
+
+  if(database[sub] && database[sub]["Class "+cls] && database[sub]["Class "+cls][topic]){
+    box.innerText = database[sub]["Class "+cls][topic];
+  } else {
+    box.innerText = "❌ Topic not added yet in PART-3.\nIt will be added in next parts.";
+  }
+
+  document.getElementById("modal").style.display="block";
+}
+
+function closeModal(){
+  document.getElementById("modal").style.display="none";
+}
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PragyanPath.ai – Part 4</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{font-family:Arial,sans-serif;margin:0;background:#eef6ff}
+header{background:linear-gradient(135deg,#000,#0a58ca,#38b6ff);color:white;padding:25px;text-align:center}
+.logo{display:flex;justify-content:center;align-items:center;gap:12px;margin-bottom:10px}
+.logo-icon{width:55px;height:55px;border-radius:50%;background:#fff;color:#0a58ca;font-weight:bold;font-size:28px;display:flex;align-items:center;justify-content:center}
+.logo-text{font-size:26px;font-weight:bold}
+section{text-align:center;padding:20px}
+select,input,button{padding:12px;margin:6px;width:90%;max-width:280px;font-size:16px;border-radius:6px;border:1px solid #ccc}
+button{background:#198754;color:white;border:none;border-radius:6px;cursor:pointer}
+button:hover{background:#146c43}
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:1000}
+.modal-content{background:#e7f5ff;margin:5% auto;padding:20px;width:92%;max-width:900px;border-left:8px solid #0dcaf0;border-radius:8px;text-align:left;white-space:pre-line}
+.close{float:right;font-size:22px;cursor:pointer;color:red}
+footer{background:#222;color:white;text-align:center;padding:15px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-icon">PP</div>
+    <div class="logo-text">PragyanPath.ai</div>
+  </div>
+  <p>Class 1–8 Important Chapters + Coding Basics | Part 4</p>
+</header>
+
+<section>
+<h2>Search Chapter</h2>
+
+<select id="classSelect">
+<option>1</option><option>2</option><option>3</option><option>4</option>
+<option>5</option><option>6</option><option>7</option><option>8</option>
 </select>
 
 <select id="subjectSelect">
@@ -59,134 +918,1613 @@ footer a{color:#9ecbff;text-decoration:none;margin:0 6px}
 <option>Biology</option>
 <option>Computer</option>
 <option>Hindi</option>
-<option>Hindi Grammar</option>
 <option>English</option>
-<option>English Grammar</option>
 <option>Sanskrit</option>
+<option>History</option>
+<option>Geography</option>
+<option>Civics</option>
+<option>Coding</option>
 </select>
 
 <br>
-<textarea id="topicInput" placeholder="Type any topic name"></textarea><br>
-<button onclick="explainTopic()">Explain Topic</button>
+<input id="topicInput" placeholder="Type chapter name (Example: Motion)">
+<br><br>
 
-<div id="responseBox"></div>
-
-<div id="availableTopics"></div>
+<button onclick="openTopic()">🔍 Explain Topic</button>
 </section>
 
+<!-- Modal -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">✖</span>
+    <div id="answerBox"></div>
+  </div>
+</div>
+
 <footer>
-<p>
-<a href="about.html">About Us</a> |
-<a href="contact.html">Contact Us</a> |
-<a href="privacy.html">Privacy Policy</a>
-</p>
-<p>Created by Vishal Shukla | Powered by GitHub Pages</p>
+<p>© PragyanPath.ai | Free Global Learning Platform</p>
 </footer>
 
 <script>
-// Complete Database Part 1,2,3
+// PART 4 DATABASE: Class 1–8 important chapters + coding basics
 const database = {
 Physics:{
-"Class 6":{"Motion":"Motion is the change in position of an object with respect to time.\nTypes: Rectilinear, Circular, Periodic.\nExample: Car moving, Clock hands, Pendulum."},
-"Class 7":{"Work":"Work = Force × Distance.\nExample: Pushing a box.","Energy":"Energy is the capacity to do work.\nExample: Food provides energy."},
-"Class 8":{"Light":"Light travels in straight lines. Reflection & refraction.\nExample: Mirror reflection.","Sound":"Sound is vibration.\nExample: Guitar string."},
-"Class 9":{"Laws of Motion":"Newton’s Laws explained with examples.","Gravitation":"Gravitational force explained with formula F=G*m1*m2/r^2.\nExample: Objects fall to Earth."},
-"Class 10":{"Electricity":"Current, Voltage, Resistance explained. Ohm's Law.","Magnetism":"Magnetism explained. Compass example."}
+"Class 6":{
+"Motion":`DEFINITION:
+Motion is the change in position of an object with respect to time.
+
+TYPES:
+1. Rectilinear Motion – straight line
+2. Circular Motion – circular path
+3. Periodic Motion – repeats periodically
+
+EXAMPLES:
+• Ball rolling on ground
+• Fan rotating
+• Pendulum swing`
+},
+"Class 7":{
+"Work":`Work is done when a force is applied and object moves.
+Example: Pushing a box.`
+,"Energy":`Energy is capacity to do work. Example: Food energy.`},
+"Class 8":{
+"Light":`Light travels in straight lines.
+Examples: Mirror reflection, Lenses.`
+,"Sound":`Sound is vibration. Examples: Guitar string, Bell.`}
 },
 Chemistry:{
-"Class 6":{"Matter":"Matter definition and states (solid, liquid, gas)."},
-"Class 7":{"Atoms":"Atoms are smallest units of matter."},
-"Class 8":{"Chemical Reactions":"Explanation of reactions with examples."},
-"Class 9":{"Atoms":"Atoms explained.","Metals and Non-metals":"Metals and Non-metals with examples."},
-"Class 10":{"Acids and Bases":"Acids/Bases and pH scale.","Metals and Non-metals":"Metals/Non-metals with examples."}
+"Class 6":{
+"Matter":`Matter is anything that occupies space and has mass.
+States: Solid, Liquid, Gas.
+Example: Stone, Water, Air.`
+},
+"Class 7":{
+"Atoms":`Atoms are smallest unit of matter.
+Example: Hydrogen atom.`
+},
+"Class 8":{
+"Chemical Reactions":`Transformation of substances into new ones.
+Example: Burning paper, Rusting iron.`
+}
 },
 Math:{
-"Class 6":{"Fractions":"Fractions explained with examples."},
-"Class 7":{"Algebra":"Algebra with examples."},
-"Class 8":{"Geometry":"Geometry with examples."},
-"Class 9":{"Pythagoras Theorem":"Right triangle theorem explained."},
-"Class 10":{"Quadratic Equations":"Quadratic equation solved step by step."}
+"Class 6":{
+"Fractions":"Fractions represent part of whole. Example: 1/2, 3/4."
+},
+"Class 7":{"Algebra":"Use of letters to represent numbers. Example: x+5=10."},
+"Class 8":{"Geometry":"Shapes, angles, areas. Example: Triangle, Circle."}
 },
 Biology:{
-"Class 6":{"Plant Cells":"Structure of plant cells."},
-"Class 7":{"Human Body":"Overview of organs."},
-"Class 8":{"Ecosystem":"Ecosystem components explained."},
-"Class 9":{"Genetics":"Introduction to genes and heredity."},
-"Class 10":{"Evolution":"Darwin’s theory explained."}
+"Class 6":{"Plant Cells":"Structure of plant cells, organelles, functions."},
+"Class 7":{"Human Body":"Organs, systems, functions."},
+"Class 8":{"Ecosystem":"Interaction of organisms and environment."}
 },
 Computer:{
-"Class 6":{"Hardware":"Basic computer hardware."},
-"Class 7":{"Software":"Basic software types."},
-"Class 8":{"Internet":"Internet concepts explained."},
-"Class 9":{"Programming":"Introduction to programming."},
-"Class 10":{"Database":"Database basics explained."}
+"Class 6":{"Hardware":"Basic computer parts: CPU, Monitor, Keyboard."},
+"Class 7":{"Software":"Programs like MS Office, Browser."},
+"Class 8":{"Internet":"Web, search engines, email."}
+},
+Coding:{
+"Class 6":{"Scratch Basics":"Intro to visual programming using Scratch."},
+"Class 7":{"Python Basics":"Variables, Loops, Print statements."},
+"Class 8":{"Python Control":"If else, Loops, Functions."}
 },
 Hindi:{
-"Class 6":{"Alphabet":"Hindi vowels and consonants."},
-"Class 7":{"Simple Sentences":"Forming simple sentences."},
-"Class 8":{"Paragraph Writing":"How to write a paragraph."},
-"Class 9":{"Story Writing":"Story composition tips."},
-"Class 10":{"Essay Writing":"Essay writing explained."}
-},
-"Hindi Grammar":{
-"Class 6":{"Nouns":"Definition and examples."},
-"Class 7":{"Pronouns":"Pronouns explained."},
-"Class 8":{"Tenses":"Tenses explained."},
-"Class 9":{"Active Passive":"Active and Passive voice."},
-"Class 10":{"Figures of Speech":"All important figures of speech."}
+"Class 6":{"Alphabet":"Vowels and consonants."},
+"Class 7":{"Simple Sentences":"Forming sentences."},
+"Class 8":{"Paragraph Writing":"Writing short paragraphs."}
 },
 English:{
 "Class 6":{"Alphabet":"English vowels and consonants."},
-"Class 7":{"Simple Sentences":"Forming simple sentences."},
-"Class 8":{"Paragraph Writing":"How to write a paragraph."},
-"Class 9":{"Story Writing":"Story composition tips."},
-"Class 10":{"Essay Writing":"Essay writing explained."}
-},
-"English Grammar":{
-"Class 6":{"Nouns":"Definition and examples."},
-"Class 7":{"Pronouns":"Pronouns explained."},
-"Class 8":{"Tenses":"Tenses explained."},
-"Class 9":{"Active Passive":"Active and Passive voice."},
-"Class 10":{"Figures of Speech":"All important figures of speech."}
+"Class 7":{"Simple Sentences":"Forming sentences."},
+"Class 8":{"Paragraph Writing":"Short paragraph examples."}
 },
 Sanskrit:{
-"Class 6":{"Alphabet":"Sanskrit vowels and consonants."},
-"Class 7":{"Simple Sentences":"Forming simple sentences."},
-"Class 8":{"Paragraph Writing":"Paragraph writing examples."},
-"Class 9":{"Story Writing":"Story composition tips."},
-"Class 10":{"Essay Writing":"Essay writing explained."}
+"Class 6":{"Alphabet":"Vowels and consonants."},
+"Class 7":{"Simple Sentences":"Forming sentences."},
+"Class 8":{"Paragraph Writing":"Short paragraphs."}
+},
+History:{
+"Class 6":{"Ancient India":"Harappan Civilization, Vedic Age."},
+"Class 7":{"Medieval India":"Gupta, Mughal, Delhi Sultanate."},
+"Class 8":{"Modern India":"Freedom struggle, important leaders."}
+},
+Geography:{
+"Class 6":{"Maps":"Reading maps, continents, oceans."},
+"Class 7":{"Weather":"Climate, monsoons, temperature."},
+"Class 8":{"Resources":"Land, water, minerals."}
+},
+Civics:{
+"Class 6":{"Community":"Roles in society, rules."},
+"Class 7":{"Governance":"Local government, democracy."},
+"Class 8":{"Rights":"Fundamental rights and duties."}
 }
 };
 
-// Function to show answer
-function explainTopic(){
+function openTopic(){
   const cls=document.getElementById("classSelect").value;
   const sub=document.getElementById("subjectSelect").value;
   const topic=document.getElementById("topicInput").value.trim();
-  const box=document.getElementById("responseBox");
-
-  if(topic===""){ box.innerText="Please type a topic."; return; }
+  const box=document.getElementById("answerBox");
 
   if(database[sub] && database[sub]["Class "+cls] && database[sub]["Class "+cls][topic]){
     box.innerText = database[sub]["Class "+cls][topic];
   } else {
-    box.innerText = "❌ Topic not added yet. It will be added soon.";
+    box.innerText = "❌ Topic not added yet in PART-4.\nIt will be added in next parts.";
+  }
+
+  document.getElementById("modal").style.display="block";
+}
+
+function closeModal(){document.getElementById("modal").style.display="none";}
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PragyanPath.ai – Part 5</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{font-family:Arial,sans-serif;margin:0;background:#eef6ff}
+header{background:linear-gradient(135deg,#000,#0a58ca,#38b6ff);color:white;padding:25px;text-align:center}
+.logo{display:flex;justify-content:center;align-items:center;gap:12px;margin-bottom:10px}
+.logo-icon{width:55px;height:55px;border-radius:50%;background:#fff;color:#0a58ca;font-weight:bold;font-size:28px;display:flex;align-items:center;justify-content:center}
+.logo-text{font-size:26px;font-weight:bold}
+section{text-align:center;padding:20px}
+select,input,button{padding:12px;margin:6px;width:90%;max-width:280px;font-size:16px;border-radius:6px;border:1px solid #ccc}
+button{background:#198754;color:white;border:none;border-radius:6px;cursor:pointer}
+button:hover{background:#146c43}
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:1000}
+.modal-content{background:#e7f5ff;margin:5% auto;padding:20px;width:92%;max-width:900px;border-left:8px solid #0dcaf0;border-radius:8px;text-align:left;white-space:pre-line}
+.close{float:right;font-size:22px;cursor:pointer;color:red}
+footer{background:#222;color:white;text-align:center;padding:15px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-icon">PP</div>
+    <div class="logo-text">PragyanPath.ai</div>
+  </div>
+  <p>Class 9–10 Important SST Chapters + PYQs | Part 5</p>
+</header>
+
+<section>
+<h2>Search Chapter</h2>
+
+<select id="classSelect">
+<option>9</option><option>10</option>
+</select>
+
+<select id="subjectSelect">
+<option>History</option>
+<option>Geography</option>
+<option>Civics</option>
+<option>Coding</option>
+</select>
+
+<br>
+<input id="topicInput" placeholder="Type chapter name (Example: Laws of Motion)">
+<br><br>
+
+<button onclick="openTopic()">🔍 Explain Topic</button>
+</section>
+
+<!-- Modal -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">✖</span>
+    <div id="answerBox"></div>
+  </div>
+</div>
+
+<footer>
+<p>© PragyanPath.ai | Free Global Learning Platform</p>
+</footer>
+
+<script>
+// PART 5 DATABASE: Class 9–10 SST + Coding + PYQs
+const database = {
+History:{
+"Class 9":{
+"French Revolution":`DEFINITION:
+The French Revolution was a period of social and political upheaval in France (1789-1799).
+
+EXPLANATION:
+- Causes: Inequality, taxation, Enlightenment ideas.
+- Events: Storming of Bastille, Declaration of Rights of Man.
+- Outcome: End of monarchy, rise of Republic.
+
+PYQ:
+Q: What was the significance of the storming of Bastille?
+A: Symbol of uprising against monarchy.`
+},
+"Class 10":{
+"World War II":`DEFINITION:
+World War II (1939-1945) was a global war involving major world powers.
+
+EXPLANATION:
+- Causes: Treaty of Versailles, rise of dictators.
+- Events: Blitzkrieg, Pearl Harbor attack.
+- Outcome: United Nations formed.
+
+PYQ:
+Q: Name one major outcome of WWII.
+A: Formation of United Nations.`
+}
+},
+Geography:{
+"Class 9":{
+"Climate":`DEFINITION:
+Climate is the average weather of a place over long period.
+
+TYPES:
+- Tropical
+- Temperate
+- Polar
+
+PYQ:
+Q: What is monsoon climate?
+A: Seasonal wind causing heavy rains.`
+},
+"Class 10":{
+"Resources":`DEFINITION:
+Resources are materials available in nature to fulfill human needs.
+
+TYPES:
+- Renewable: Solar, Wind
+- Non-renewable: Coal, Oil
+
+PYQ:
+Q: Give one example of renewable resource.
+A: Solar energy.`
+}
+},
+Civics:{
+"Class 9":{
+"Democracy":`DEFINITION:
+Democracy is government by the people, for the people.
+
+FEATURES:
+- Free elections
+- Fundamental rights
+- Representation
+
+PYQ:
+Q: Mention one feature of democracy.
+A: Free elections.`
+},
+"Class 10":{
+"Fundamental Rights":`DEFINITION:
+Rights guaranteed by constitution to all citizens.
+
+EXAMPLES:
+- Right to equality
+- Right to freedom of speech
+
+PYQ:
+Q: Which Article guarantees right to equality?
+A: Article 14`
+}
+},
+Coding:{
+"Class 9":{
+"Python Basics":`INTRODUCTION:
+Python is a high-level programming language.
+
+TOPICS:
+- Variables
+- Loops
+- Functions
+
+EXAMPLES:
+Print "Hello World"
+x = 5; print(x)
+
+PYQ:
+Q: How do you print in Python?
+A: print("text")`
+},
+"Class 10":{
+"Python Control":`INTRODUCTION:
+Control statements to direct flow: if-else, loops.
+
+EXAMPLES:
+if x>5:
+   print("Yes")
+for i in range(5):
+   print(i)
+
+PYQ:
+Q: What loop repeats until condition is false?
+A: While loop`
+}
+}
+};
+
+function openTopic(){
+  const cls=document.getElementById("classSelect").value;
+  const sub=document.getElementById("subjectSelect").value;
+  const topic=document.getElementById("topicInput").value.trim();
+  const box=document.getElementById("answerBox");
+
+  if(database[sub] && database[sub]["Class "+cls] && database[sub]["Class "+cls][topic]){
+    box.innerText = database[sub]["Class "+cls][topic];
+  } else {
+    box.innerText = "❌ Topic not added yet in PART-5.\nIt will be added in next parts.";
+  }
+
+  document.getElementById("modal").style.display="block";
+}
+
+function closeModal(){document.getElementById("modal").style.display="none";}
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PragyanPath.ai – Part 6</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{font-family:Arial,sans-serif;margin:0;background:#eef6ff}
+header{background:linear-gradient(135deg,#000,#0a58ca,#38b6ff);color:white;padding:25px;text-align:center}
+.logo{display:flex;justify-content:center;align-items:center;gap:12px;margin-bottom:10px}
+.logo-icon{width:55px;height:55px;border-radius:50%;background:#fff;color:#0a58ca;font-weight:bold;font-size:28px;display:flex;align-items:center;justify-content:center}
+.logo-text{font-size:26px;font-weight:bold}
+section{text-align:center;padding:20px}
+select,input,button{padding:12px;margin:6px;width:90%;max-width:280px;font-size:16px;border-radius:6px;border:1px solid #ccc}
+button{background:#198754;color:white;border:none;border-radius:6px;cursor:pointer}
+button:hover{background:#146c43}
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:1000}
+.modal-content{background:#e7f5ff;margin:5% auto;padding:20px;width:92%;max-width:900px;border-left:8px solid #0dcaf0;border-radius:8px;text-align:left;white-space:pre-line}
+.close{float:right;font-size:22px;cursor:pointer;color:red}
+footer{background:#222;color:white;text-align:center;padding:15px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-icon">PP</div>
+    <div class="logo-text">PragyanPath.ai</div>
+  </div>
+  <p>Class 11–12 Science + Advanced Coding | Part 6</p>
+</header>
+
+<section>
+<h2>Search Chapter</h2>
+
+<select id="classSelect">
+<option>11</option><option>12</option>
+</select>
+
+<select id="subjectSelect">
+<option>Physics</option>
+<option>Chemistry</option>
+<option>Biology</option>
+<option>Python</option>
+<option>C++</option>
+<option>Java</option>
+</select>
+
+<br>
+<input id="topicInput" placeholder="Type chapter name (Example: Gravitation)">
+<br><br>
+
+<button onclick="openTopic()">🔍 Explain Topic</button>
+</section>
+
+<!-- Modal -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">✖</span>
+    <div id="answerBox"></div>
+  </div>
+</div>
+
+<footer>
+<p>© PragyanPath.ai | Free Global Learning Platform</p>
+</footer>
+
+<script>
+// PART 6 DATABASE: Class 11–12 Science + Advanced Coding
+const database = {
+Physics:{
+"Class 11":{
+"Electrostatics":`DEFINITION:
+Study of electric charges at rest.
+
+EXPLANATION:
+- Coulomb's Law: Force between two point charges.
+- Electric field and potential.
+- Conductors and insulators.
+
+EXAMPLES:
+- Van de Graaff generator
+- Static electricity
+
+PYQ:
+Q: State Coulomb’s Law.
+A: F = k * q1 * q2 / r^2`,
+
+"Motion":`DEFINITION:
+Study of motion of objects under various forces.
+
+EXPLANATION:
+- Kinematics: distance, displacement, velocity, acceleration.
+- Dynamics: Newton's laws.
+- Work, energy, power.
+
+EXAMPLES:
+- Free fall
+- Projectile motion
+
+PYQ:
+Q: Formula for final velocity?
+A: v = u + at`
+},
+"Class 12":{
+"Gravitation":`DEFINITION:
+Gravitational force between two masses.
+
+EXPLANATION:
+- Newton’s law of gravitation
+- Acceleration due to gravity
+- Orbital motion of planets and satellites
+
+PYQ:
+Q: Formula for gravitational force?
+A: F = G*m1*m2/r^2`
+}
+},
+Chemistry:{
+"Class 11":{
+"Chemical Bonding":`DEFINITION:
+Atoms combine to form molecules via bonds.
+
+EXPLANATION:
+- Ionic, covalent, metallic bonds
+- Bond energy and properties
+- VSEPR theory
+
+PYQ:
+Q: Give example of ionic compound.
+A: NaCl`
+},
+"Class 12":{
+"Electrochemistry":`DEFINITION:
+Study of chemical processes involving electric current.
+
+EXPLANATION:
+- Galvanic cells
+- Electrode potential
+- Redox reactions
+
+PYQ:
+Q: What is the function of salt bridge?
+A: Completes the electrical circuit`
+}
+},
+Biology:{
+"Class 11":{
+"Cell Structure":`DEFINITION:
+Structure of eukaryotic and prokaryotic cells.
+
+EXPLANATION:
+- Organelles: nucleus, mitochondria, ribosome
+- Cell membrane and wall
+- Cell division: mitosis, meiosis
+
+PYQ:
+Q: Function of mitochondria?
+A: Powerhouse of the cell`
+},
+"Class 12":{
+"Human Physiology":`DEFINITION:
+Study of human body systems.
+
+EXPLANATION:
+- Circulatory, respiratory, digestive systems
+- Neural and hormonal regulation
+
+PYQ:
+Q: Name main hormone secreted by pancreas.
+A: Insulin`
+}
+},
+Python:{
+"Class 11":{
+"Functions":`INTRODUCTION:
+Python functions to organize code.
+
+EXPLANATION:
+- Defining and calling functions
+- Parameters and return
+- Scope and recursion
+
+PYQ:
+Q: How do you define a function?
+A: def function_name():`
+}
+},
+"C++":{
+"Class 11":{
+"Loops":`INTRODUCTION:
+C++ loops control program flow.
+
+EXAMPLES:
+- for, while, do-while loops
+
+PYQ:
+Q: Syntax of for loop?
+A: for(int i=0;i<n;i++)`
+}
+},
+Java:{
+"Class 11":{
+"Classes & Objects":`INTRODUCTION:
+Java is object-oriented language.
+
+EXPLANATION:
+- Defining classes and objects
+- Constructors
+- Methods
+
+PYQ:
+Q: How to create object in Java?
+A: ClassName obj = new ClassName();`
+}
+}
+};
+
+function openTopic(){
+  const cls=document.getElementById("classSelect").value;
+  const sub=document.getElementById("subjectSelect").value;
+  const topic=document.getElementById("topicInput").value.trim();
+  const box=document.getElementById("answerBox");
+
+  if(database[sub] && database[sub]["Class "+cls] && database[sub]["Class "+cls][topic]){
+    box.innerText = database[sub]["Class "+cls][topic];
+  } else {
+    box.innerText = "❌ Topic not added yet in PART-6.\nIt will be added in next parts.";
+  }
+
+  document.getElementById("modal").style.display="block";
+}
+
+function closeModal(){document.getElementById("modal").style.display="none";}
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PragyanPath.ai – Part 7</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{font-family:Arial,sans-serif;margin:0;background:#eef6ff}
+header{background:linear-gradient(135deg,#000,#0a58ca,#38b6ff);color:white;padding:25px;text-align:center}
+.logo{display:flex;justify-content:center;align-items:center;gap:12px;margin-bottom:10px}
+.logo-icon{width:55px;height:55px;border-radius:50%;background:#fff;color:#0a58ca;font-weight:bold;font-size:28px;display:flex;align-items:center;justify-content:center}
+.logo-text{font-size:26px;font-weight:bold}
+section{text-align:center;padding:20px}
+select,input,button{padding:12px;margin:6px;width:90%;max-width:280px;font-size:16px;border-radius:6px;border:1px solid #ccc}
+button{background:#198754;color:white;border:none;border-radius:6px;cursor:pointer}
+button:hover{background:#146c43}
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:1000}
+.modal-content{background:#e7f5ff;margin:5% auto;padding:20px;width:92%;max-width:900px;border-left:8px solid #0dcaf0;border-radius:8px;text-align:left;white-space:pre-line}
+.close{float:right;font-size:22px;cursor:pointer;color:red}
+footer{background:#222;color:white;text-align:center;padding:15px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-icon">PP</div>
+    <div class="logo-text">PragyanPath.ai</div>
+  </div>
+  <p>Class 11–12 Maths & Competitive Prep | Part 7</p>
+</header>
+
+<section>
+<h2>Search Chapter</h2>
+
+<select id="classSelect">
+<option>11</option><option>12</option>
+</select>
+
+<select id="subjectSelect">
+<option>Mathematics</option>
+<option>IIT-JEE</option>
+<option>NEET</option>
+<option>Competitive Coding</option>
+</select>
+
+<br>
+<input id="topicInput" placeholder="Type chapter name (Example: Calculus)">
+<br><br>
+
+<button onclick="openTopic()">🔍 Explain Topic</button>
+</section>
+
+<!-- Modal -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">✖</span>
+    <div id="answerBox"></div>
+  </div>
+</div>
+
+<footer>
+<p>© PragyanPath.ai | Free Global Learning Platform</p>
+</footer>
+
+<script>
+// PART 7 DATABASE: Class 11–12 Maths & Competitive Prep
+const database = {
+Mathematics:{
+"Class 11":{
+"Calculus":`DEFINITION:
+Calculus studies change, slopes, and areas under curves.
+
+EXPLANATION:
+- Differentiation: rate of change of a function
+- Integration: area under curves
+- Limits and continuity
+- Application in motion, growth problems
+
+EXAMPLES:
+- Velocity as derivative of position
+- Area under y=x^2
+
+PYQ:
+Q: Differentiate x^3
+A: 3x^2`
+,
+"Algebra":`DEFINITION:
+Algebra deals with expressions, equations and inequalities.
+
+EXPLANATION:
+- Quadratic equations
+- Progressions (AP, GP)
+- Complex numbers
+- Determinants and matrices
+
+PYQ:
+Q: Solve x^2 - 5x + 6 = 0
+A: x=2,3`
+},
+"Class 12":{
+"Probability":`DEFINITION:
+Probability measures likelihood of events.
+
+EXPLANATION:
+- Random experiments
+- Conditional probability
+- Bayes theorem
+- Applications in statistics
+
+PYQ:
+Q: Probability of head in a coin toss?
+A: 1/2`
+,
+"Vectors":`DEFINITION:
+Vectors have magnitude and direction.
+
+EXPLANATION:
+- Addition, subtraction of vectors
+- Scalar and vector product
+- Applications in mechanics
+
+PYQ:
+Q: Dot product of i+j and i-j?
+A: 0`
+}
+},
+"IIT-JEE":{
+"Class 11":{
+"Mechanics":`DEFINITION:
+Study of motion and forces.
+
+EXPLANATION:
+- Newton’s laws
+- Kinematics, Dynamics
+- Work, Energy, Power
+
+PYQ:
+Q: Find acceleration of body in free fall
+A: a = g`
+}
+},
+"NEET":{
+"Class 12":{
+"Human Physiology":`DEFINITION:
+Important topics for biology competitive exams.
+
+EXPLANATION:
+- Circulatory, Respiratory, Digestive systems
+- Neural & Hormonal regulation
+- Reproductive system
+
+PYQ:
+Q: Function of Hemoglobin?
+A: Carry oxygen`
+}
+},
+"Competitive Coding":{
+"Class 11":{
+"Data Structures":`INTRODUCTION:
+Data Structures are ways to organize data.
+
+EXPLANATION:
+- Arrays, Linked Lists
+- Stacks, Queues
+- Basics of algorithm design
+
+PYQ:
+Q: What is a stack?
+A: LIFO data structure`
+}
+}
+};
+
+function openTopic(){
+  const cls=document.getElementById("classSelect").value;
+  const sub=document.getElementById("subjectSelect").value;
+  const topic=document.getElementById("topicInput").value.trim();
+  const box=document.getElementById("answerBox");
+
+  if(database[sub] && database[sub]["Class "+cls] && database[sub]["Class "+cls][topic]){
+    box.innerText = database[sub]["Class "+cls][topic];
+  } else {
+    box.innerText = "❌ Topic not added yet in PART-7.\nIt will be added in next parts.";
+  }
+
+  document.getElementById("modal").style.display="block";
+}
+
+function closeModal(){document.getElementById("modal").style.display="none";}
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PragyanPath.ai – Part 8</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{font-family:Arial,sans-serif;margin:0;background:#eef6ff}
+header{background:linear-gradient(135deg,#000,#0a58ca,#38b6ff);color:white;padding:25px;text-align:center}
+.logo{display:flex;justify-content:center;align-items:center;gap:12px;margin-bottom:10px}
+.logo-icon{width:55px;height:55px;border-radius:50%;background:#fff;color:#0a58ca;font-weight:bold;font-size:28px;display:flex;align-items:center;justify-content:center}
+.logo-text{font-size:26px;font-weight:bold}
+section{text-align:center;padding:20px}
+select,input,button{padding:12px;margin:6px;width:90%;max-width:280px;font-size:16px;border-radius:6px;border:1px solid #ccc}
+button{background:#198754;color:white;border:none;border-radius:6px;cursor:pointer}
+button:hover{background:#146c43}
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:1000}
+.modal-content{background:#e7f5ff;margin:5% auto;padding:20px;width:92%;max-width:900px;border-left:8px solid #0dcaf0;border-radius:8px;text-align:left;white-space:pre-line}
+.close{float:right;font-size:22px;cursor:pointer;color:red}
+footer{background:#222;color:white;text-align:center;padding:15px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-icon">PP</div>
+    <div class="logo-text">PragyanPath.ai</div>
+  </div>
+  <p>Class 9–12 Social Science | Part 8</p>
+</header>
+
+<section>
+<h2>Search Chapter</h2>
+
+<select id="classSelect">
+<option>9</option><option>10</option><option>11</option><option>12</option>
+</select>
+
+<select id="subjectSelect">
+<option>History</option>
+<option>Civics</option>
+<option>Geography</option>
+<option>Economics</option>
+</select>
+
+<br>
+<input id="topicInput" placeholder="Type chapter name (Example: Industrial Revolution)">
+<br><br>
+
+<button onclick="openTopic()">🔍 Explain Topic</button>
+</section>
+
+<!-- Modal -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">✖</span>
+    <div id="answerBox"></div>
+  </div>
+</div>
+
+<footer>
+<p>© PragyanPath.ai | Free Global Learning Platform</p>
+</footer>
+
+<script>
+// PART 8 DATABASE: Class 9–12 Social Science
+const database = {
+History:{
+"Class 9":{
+"Industrial Revolution":`DEFINITION:
+Industrial Revolution was the period of major industrialization in the late 18th and early 19th century.
+
+EXPLANATION:
+- Shift from agrarian to industrial economy
+- Invention of steam engine, mechanized textile production
+- Urbanization increased
+- Rise of factories and working class
+
+IMPORTANCE:
+- Modern industrial society
+- Technological advancements
+- Economic growth
+
+PYQ:
+Q: Name one invention of the Industrial Revolution.
+A: Steam Engine`
+},
+"Class 10":{
+"World War II":`DEFINITION:
+World War II was a global conflict from 1939 to 1945 involving major powers.
+
+EXPLANATION:
+- Causes: Treaty of Versailles, rise of fascism
+- Key events: Invasion of Poland, Pearl Harbor
+- Outcome: Formation of UN, Cold War beginning
+
+PYQ:
+Q: When did WWII start?
+A: 1939`
+}
+},
+Civics:{
+"Class 9":{
+"Democracy":`DEFINITION:
+Democracy is a system of government where people elect representatives.
+
+EXPLANATION:
+- Types: Direct, Representative
+- Principles: Liberty, Equality, Justice
+- Citizen’s role: Voting, participation
+
+PYQ:
+Q: Give one feature of democracy.
+A: Free and fair elections`
+},
+"Class 10":{
+"Fundamental Rights":`DEFINITION:
+Rights guaranteed to citizens by Constitution.
+
+EXPLANATION:
+- Right to Equality, Freedom, Education
+- Protection against discrimination
+- Remedies via courts
+
+PYQ:
+Q: Article 21 guarantees?
+A: Right to Life`
+}
+},
+Geography:{
+"Class 11":{
+"Climate Change":`DEFINITION:
+Long-term alteration of temperature and weather patterns.
+
+EXPLANATION:
+- Causes: Greenhouse gases, deforestation
+- Effects: Rising sea levels, global warming
+- Mitigation: Renewable energy, afforestation
+
+PYQ:
+Q: One greenhouse gas?
+A: CO2`
+},
+"Class 12":{
+"Population Studies":`DEFINITION:
+Study of population size, distribution, growth, and density.
+
+EXPLANATION:
+- Demographic transition
+- Migration trends
+- Policy measures for population control
+
+PYQ:
+Q: India’s current population approx?
+A: 1.4 billion`
+}
+},
+Economics:{
+"Class 11":{
+"Microeconomics":`DEFINITION:
+Microeconomics studies individual markets and behavior of consumers and firms.
+
+EXPLANATION:
+- Demand, Supply, Market equilibrium
+- Price elasticity
+- Consumer & Producer surplus
+
+PYQ:
+Q: Law of demand states?
+A: Price ↑, Quantity demanded ↓`
+},
+"Class 12":{
+"Macroeconomics":`DEFINITION:
+Macroeconomics studies economy as a whole.
+
+EXPLANATION:
+- GDP, Inflation, Unemployment
+- Fiscal & Monetary policy
+- National income accounting
+
+PYQ:
+Q: Full form of GDP?
+A: Gross Domestic Product`
+}
+}
+};
+
+function openTopic(){
+  const cls=document.getElementById("classSelect").value;
+  const sub=document.getElementById("subjectSelect").value;
+  const topic=document.getElementById("topicInput").value.trim();
+  const box=document.getElementById("answerBox");
+
+  if(database[sub] && database[sub]["Class "+cls] && database[sub]["Class "+cls][topic]){
+    box.innerText = database[sub]["Class "+cls][topic];
+  } else {
+    box.innerText = "❌ Topic not added yet in PART-8.\nIt will be added in next parts.";
+  }
+
+  document.getElementById("modal").style.display="block";
+}
+
+function closeModal(){document.getElementById("modal").style.display="none";}
+</script>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PragyanPath.ai – Part 9</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{font-family:Arial,sans-serif;margin:0;background:#eef6ff}
+header{background:linear-gradient(135deg,#000,#0a58ca,#38b6ff);color:white;padding:25px;text-align:center}
+.logo{display:flex;justify-content:center;align-items:center;gap:12px;margin-bottom:10px}
+.logo-icon{width:55px;height:55px;border-radius:50%;background:#fff;color:#0a58ca;font-weight:bold;font-size:28px;display:flex;align-items:center;justify-content:center}
+.logo-text{font-size:26px;font-weight:bold}
+section{text-align:center;padding:20px}
+select,input,button{padding:12px;margin:6px;width:90%;max-width:280px;font-size:16px;border-radius:6px;border:1px solid #ccc}
+button{background:#198754;color:white;border:none;border-radius:6px;cursor:pointer}
+button:hover{background:#146c43}
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:1000}
+.modal-content{background:#e7f5ff;margin:5% auto;padding:20px;width:92%;max-width:900px;border-left:8px solid #0dcaf0;border-radius:8px;text-align:left;white-space:pre-line}
+.close{float:right;font-size:22px;cursor:pointer;color:red}
+footer{background:#222;color:white;text-align:center;padding:15px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-icon">PP</div>
+    <div class="logo-text">PragyanPath.ai</div>
+  </div>
+  <p>Class 11–12 + IIT/NEET + Coding | Part 9</p>
+</header>
+
+<section>
+<h2>Search Chapter</h2>
+
+<select id="classSelect">
+<option>11</option><option>12</option>
+</select>
+
+<select id="subjectSelect">
+<option>Physics</option>
+<option>Chemistry</option>
+<option>Biology</option>
+<option>Coding</option>
+<option>Computer Science</option>
+</select>
+
+<br>
+<input id="topicInput" placeholder="Type chapter name (Example: Electrostatics)">
+<br><br>
+
+<button onclick="openTopic()">🔍 Explain Topic</button>
+</section>
+
+<!-- Modal -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">✖</span>
+    <div id="answerBox"></div>
+  </div>
+</div>
+
+<footer>
+<p>© PragyanPath.ai | Free Global Learning Platform</p>
+</footer>
+
+<script>
+// PART 9 DATABASE: Class 11–12 + IIT/NEET + Coding
+const database = {
+Physics:{
+"Class 11":{
+"Electrostatics":`DEFINITION:
+Study of electric charges at rest.
+
+EXPLANATION:
+- Coulomb's law: Force between charges F = k*q1*q2/r²
+- Electric field: E = F/q
+- Potential and Capacitance
+- Important formulas for IIT preparation
+
+PYQs:
+Q: Charge is quantized. True/False?
+A: True`
+},
+"Mechanics":`DEFINITION:
+Study of motion and forces.
+
+EXPLANATION:
+- Newton's Laws
+- Work, Energy, Power
+- Momentum, Collisions
+- Examples for IIT/NEET
+`
+},
+"Class 12":{
+"Electromagnetic Induction":`DEFINITION:
+Process by which changing magnetic field induces emf.
+
+EXPLANATION:
+- Faraday's law
+- Lenz's law
+- Applications: Generator, Transformer
+
+PYQs:
+Q: Lenz’s law ensures what?
+A: Conservation of energy`
+},
+"Optics":`DEFINITION:
+Study of light.
+
+EXPLANATION:
+- Reflection, Refraction
+- Lenses, Mirrors
+- Wave optics: Interference, Diffraction
+`
+}
+},
+Chemistry:{
+"Class 11":{
+"Chemical Bonding":`DEFINITION:
+Study of how atoms combine to form molecules.
+
+EXPLANATION:
+- Ionic, Covalent, Metallic bonds
+- VSEPR theory
+- Hybridization
+
+PYQs:
+Q: Shape of CH4 molecule?
+A: Tetrahedral`
+},
+"Class 12":{
+"Organic Chemistry":`DEFINITION:
+Chemistry of carbon compounds.
+
+EXPLANATION:
+- Alkanes, Alkenes, Alkynes
+- Functional groups
+- Reactions and mechanisms
+
+PYQs:
+Q: Functional group in alcohol?
+A: -OH`
+}
+},
+Biology:{
+"Class 11":{
+"Cell Biology":`DEFINITION:
+Study of cell structure and function.
+
+EXPLANATION:
+- Prokaryotic vs Eukaryotic cells
+- Cell organelles
+- Cell cycle and division
+
+PYQs:
+Q: Site of protein synthesis?
+A: Ribosome`
+},
+"Class 12":{
+"Genetics":`DEFINITION:
+Study of heredity.
+
+EXPLANATION:
+- Mendelian laws
+- DNA structure and replication
+- Mutation and variation
+
+PYQs:
+Q: Who proposed Mendel's laws?
+A: Gregor Mendel`
+}
+},
+Coding:{
+"Class 11":{
+"Python Basics":`DEFINITION:
+Introduction to Python programming.
+
+EXPLANATION:
+- Variables, Data types
+- Conditional statements
+- Loops
+- Functions
+
+EXAMPLES:
+- Simple calculator
+- Sum of numbers
+`
+},
+"Class 12":{
+"Data Structures":`DEFINITION:
+Study of organizing data efficiently.
+
+EXPLANATION:
+- Arrays, Linked Lists, Stacks, Queues
+- Algorithms for searching and sorting
+- Python implementation
+
+PYQs:
+Q: Time complexity of linear search?
+A: O(n)`
+}
+},
+"Computer Science":{
+"Class 11":{
+"Computer Fundamentals":`DEFINITION:
+Introduction to computer systems.
+
+EXPLANATION:
+- Hardware and Software
+- Operating systems
+- Basics of networking
+
+PYQs:
+Q: CPU full form?
+A: Central Processing Unit`
+},
+"Class 12":{
+"Database Management":`DEFINITION:
+Study of databases.
+
+EXPLANATION:
+- RDBMS concepts
+- SQL queries
+- Normalization
+
+PYQs:
+Q: SQL command to fetch all data?
+A: SELECT * FROM table_name;`
+}
+}
+};
+
+function openTopic(){
+  const cls=document.getElementById("classSelect").value;
+  const sub=document.getElementById("subjectSelect").value;
+  const topic=document.getElementById("topicInput").value.trim();
+  const box=document.getElementById("answerBox");
+
+  if(database[sub] && database[sub]["Class "+cls] && database[sub]["Class "+cls][topic]){
+    box.innerText = database[sub]["Class "+cls][topic];
+  } else {
+    box.innerText = "❌ Topic not available in PART-9.\nIt will be added in next parts.";
+  }
+
+  document.getElementById("modal").style.display="block";
+}
+
+function closeModal(){document.getElementById("modal").style.display="none";}
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PragyanPath.ai – Part 10</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{font-family:Arial,sans-serif;margin:0;background:#eef6ff}
+header{background:linear-gradient(135deg,#000,#0a58ca,#38b6ff);color:white;padding:25px;text-align:center}
+.logo{display:flex;justify-content:center;align-items:center;gap:12px;margin-bottom:10px}
+.logo-icon{width:55px;height:55px;border-radius:50%;background:#fff;color:#0a58ca;font-weight:bold;font-size:28px;display:flex;align-items:center;justify-content:center}
+.logo-text{font-size:26px;font-weight:bold}
+section{text-align:center;padding:20px}
+select,input,button{padding:12px;margin:6px;width:90%;max-width:280px;font-size:16px;border-radius:6px;border:1px solid #ccc}
+button{background:#198754;color:white;border:none;border-radius:6px;cursor:pointer}
+button:hover{background:#146c43}
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:1000}
+.modal-content{background:#e7f5ff;margin:5% auto;padding:20px;width:92%;max-width:900px;border-left:8px solid #0dcaf0;border-radius:8px;text-align:left;white-space:pre-line}
+.close{float:right;font-size:22px;cursor:pointer;color:red}
+footer{background:#222;color:white;text-align:center;padding:15px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-icon">PP</div>
+    <div class="logo-text">PragyanPath.ai</div>
+  </div>
+  <p>Class 1–8 + ITI & Beginner Coding | Part 10</p>
+</header>
+
+<section>
+<h2>Search Chapter</h2>
+
+<select id="classSelect">
+<option>1</option><option>2</option><option>3</option><option>4</option>
+<option>5</option><option>6</option><option>7</option><option>8</option>
+</select>
+
+<select id="subjectSelect">
+<option>Math</option>
+<option>Science</option>
+<option>Computer</option>
+<option>Hindi</option>
+<option>English</option>
+<option>General Knowledge</option>
+<option>ITI Prep</option>
+<option>Coding Basics</option>
+</select>
+
+<br>
+<input id="topicInput" placeholder="Type chapter name (Example: Addition)">
+<br><br>
+
+<button onclick="openTopic()">🔍 Explain Topic</button>
+</section>
+
+<!-- Modal -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">✖</span>
+    <div id="answerBox"></div>
+  </div>
+</div>
+
+<footer>
+<p>© PragyanPath.ai | Free Global Learning Platform</p>
+</footer>
+
+<script>
+// PART 10 DATABASE: Class 1–8 + ITI + Beginner Coding
+const database = {
+Math:{
+"Class 1":{
+"Addition":`DEFINITION:
+Addition is the process of combining two or more numbers to get a total.
+
+EXAMPLES:
+2 + 3 = 5
+5 + 7 = 12
+
+TIPS:
+- Use fingers to count
+- Visualize objects to add`
+},
+"Class 2":{
+"Subtraction":`DEFINITION:
+Subtraction is taking away a number from another.
+
+EXAMPLES:
+7 - 4 = 3
+10 - 6 = 4
+
+TIPS:
+- Count backwards
+- Use number line`
+}
+},
+Science:{
+"Class 1":{
+"Plants":`DEFINITION:
+Plants are living things that make their own food.
+
+EXAMPLES:
+- Trees, Flowers, Grass
+
+IMPORTANCE:
+- Provide oxygen
+- Food for humans and animals`
+},
+"Class 2":{
+"Animals":`DEFINITION:
+Animals are living beings that move and eat.
+
+EXAMPLES:
+- Dog, Cat, Cow
+
+IMPORTANCE:
+- Companions
+- Food source`
+}
+},
+Computer:{
+"Class 5":{
+"Introduction to Computers":`DEFINITION:
+Basic knowledge about computers.
+
+EXPLANATION:
+- Hardware vs Software
+- Keyboard, Mouse, Monitor
+- Uses in daily life`
+},
+"Class 6":{
+"MS Word Basics":`DEFINITION:
+Learn to create documents.
+
+EXAMPLES:
+- Typing letters
+- Saving and printing`
+}
+},
+"ITI Prep":{
+"Class 8":{
+"Electrical Basics":`DEFINITION:
+Introduction to electricity for ITI students.
+
+EXPLANATION:
+- Current, Voltage, Resistance
+- Simple circuits and safety
+
+PYQs:
+Q: Unit of current?
+A: Ampere`
+}
+},
+"Coding Basics":{
+"Class 6":{
+"Python Intro":`DEFINITION:
+Introduction to Python programming.
+
+EXPLANATION:
+- Variables, Data types
+- Conditional statements
+- Loops
+
+EXAMPLES:
+- Print Hello World
+- Simple addition calculator`
+}
+}
+};
+
+function openTopic(){
+  const cls=document.getElementById("classSelect").value;
+  const sub=document.getElementById("subjectSelect").value;
+  const topic=document.getElementById("topicInput").value.trim();
+  const box=document.getElementById("answerBox");
+
+  if(database[sub] && database[sub]["Class "+cls] && database[sub]["Class "+cls][topic]){
+    box.innerText = database[sub]["Class "+cls][topic];
+  } else {
+    box.innerText = "❌ Topic not available in PART-10.\nIt will be added in future updates.";
+  }
+
+  document.getElementById("modal").style.display="block";
+}
+
+function closeModal(){document.getElementById("modal").style.display="none";}
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PragyanPath.ai – Part 11 Tests</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{font-family:Arial,sans-serif;margin:0;background:#eef6ff;text-align:center}
+header{background:linear-gradient(135deg,#000,#0a58ca,#38b6ff);color:white;padding:25px}
+.logo{display:flex;justify-content:center;align-items:center;gap:12px;margin-bottom:10px}
+.logo-icon{width:55px;height:55px;border-radius:50%;background:#fff;color:#0a58ca;font-weight:bold;font-size:28px;display:flex;align-items:center;justify-content:center}
+.logo-text{font-size:26px;font-weight:bold}
+section{padding:20px}
+select,input,button{padding:12px;margin:6px;width:90%;max-width:280px;font-size:16px;border-radius:6px;border:1px solid #ccc}
+button{background:#198754;color:white;border:none;border-radius:6px;cursor:pointer}
+button:hover{background:#146c43}
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:1000}
+.modal-content{background:#e7f5ff;margin:5% auto;padding:20px;width:92%;max-width:900px;border-left:8px solid #0dcaf0;border-radius:8px;text-align:left}
+.close{float:right;font-size:22px;cursor:pointer;color:red}
+.question-box{margin:15px 0;text-align:left}
+.options input{margin-right:8px}
+footer{background:#222;color:white;text-align:center;padding:15px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-icon">PP</div>
+    <div class="logo-text">PragyanPath.ai</div>
+  </div>
+  <p>Online Tests Portal | Class 1–12 + IIT/ITI/Coding</p>
+</header>
+
+<section>
+<h2>Select Test</h2>
+
+<select id="classSelect">
+<option>1</option><option>2</option><option>3</option><option>4</option>
+<option>5</option><option>6</option><option>7</option><option>8</option>
+<option>9</option><option>10</option><option>11</option><option>12</option>
+<option>IIT</option><option>ITI</option><option>Coding</option>
+</select>
+
+<select id="subjectSelect">
+<option>Math</option>
+<option>Science</option>
+<option>Computer</option>
+<option>Hindi</option>
+<option>English</option>
+<option>General Knowledge</option>
+<option>Physics</option>
+<option>Chemistry</option>
+<option>Biology</option>
+<option>Coding Basics</option>
+</select>
+
+<br>
+<button onclick="startTest()">Start Test</button>
+</section>
+
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">✖</span>
+    <div id="testBox"></div>
+  </div>
+</div>
+
+<footer>
+<p>© PragyanPath.ai | Free Global Learning Platform</p>
+</footer>
+
+<script>
+// PART 11 DATABASE: Example Questions (add 60–70 per class/subject)
+const testDB = {
+"Class 9": {
+"Math": [
+{
+q:"What is 7 + 5?",
+options:["10","12","14","15"],
+ans:"12"
+},
+{
+q:"The square of 8 is?",
+options:["64","16","32","48"],
+ans:"64"
+},
+{
+q:"Pythagoras theorem is applicable for?",
+options:["Right-angled triangle","Equilateral triangle","Isosceles triangle","Scalene triangle"],
+ans:"Right-angled triangle"
+}
+]
+},
+"IIT":{
+"Physics":[
+{
+q:"Unit of Force?",
+options:["Newton","Watt","Joule","Pascal"],
+ans:"Newton"
+}
+]
+}
+};
+
+// TEST FUNCTIONS
+let currentTest=[], currentIndex=0, score=0, totalQuestions=0;
+
+function startTest(){
+  const cls=document.getElementById("classSelect").value;
+  const sub=document.getElementById("subjectSelect").value;
+
+  if(testDB[cls] && testDB[cls][sub]){
+    currentTest = testDB[cls][sub];
+    currentIndex=0;
+    score=0;
+    totalQuestions = currentTest.length;
+    showQuestion();
+    document.getElementById("modal").style.display="block";
+  } else {
+    alert("Test not available yet for "+cls+" "+sub);
   }
 }
 
-// Function to show available topics
-function showAvailableTopics(){
-  let text="📌 Available Topics:\n\n";
-  for(let sub in database){
-    for(let cls in database[sub]){
-      text+=`Class ${cls.replace("Class ","")}: ${sub} → `;
-      text+=Object.keys(database[sub][cls]).join(", ")+"\n";
-    }
+function showQuestion(){
+  if(currentIndex>=currentTest.length){
+    showResult();
+    return;
   }
-  document.getElementById("availableTopics").innerText=text;
+  const qObj = currentTest[currentIndex];
+  let html=`<div class="question-box"><b>Q${currentIndex+1}: ${qObj.q}</b></div>`;
+  html+='<div class="options">';
+  qObj.options.forEach((opt,i)=>{
+    html+=`<label><input type="radio" name="opt" value="${opt}"> ${opt}</label><br>`;
+  });
+  html+='</div><button onclick="submitAnswer()">Next</button>';
+  document.getElementById("testBox").innerHTML = html;
 }
 
-showAvailableTopics();
+function submitAnswer(){
+  const selected = document.querySelector('input[name="opt"]:checked');
+  if(selected){
+    if(selected.value===currentTest[currentIndex].ans) score+=Math.floor(100/totalQuestions);
+    currentIndex++;
+    showQuestion();
+  } else {
+    alert("Please select an option");
+  }
+}
+
+function showResult(){
+  let badge="";
+  if(score>=90) badge="Platinum";
+  else if(score>=75) badge="Gold";
+  else if(score>=60) badge="Silver";
+  else if(score>=45) badge="Diamond";
+  else badge="Participant";
+
+  document.getElementById("testBox").innerHTML = `<h3>Test Completed!</h3>
+  <p>Score: ${score}/100</p>
+  <p>Badge: ${badge}</p>
+  <button onclick="closeModal()">Close</button>`;
+}
+
+function closeModal(){document.getElementById("modal").style.display="none";}
 </script>
 
 </body>
