@@ -1,1 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pragyanpath.ai - Class 1</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f5f5f5;
+    }
+    header {
+        background: #1e3a8a;
+        color: white;
+        text-align: center;
+        padding: 20px 0;
+    }
+    header h1 { margin: 0; font-size: 2rem; }
+    header p { margin: 5px 0 0; font-size: 1rem; }
 
+    .container {
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 0 20px;
+    }
+
+    .class-section, .subject-section, .chapter-section {
+        background: white;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .class-section h2, .subject-section h3, .chapter-section h4 {
+        margin-top: 0;
+    }
+
+    .chapters button {
+        background: #2563eb;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        margin: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .chapters button:hover { background: #1d4ed8; }
+
+    .explanation {
+        margin-top: 10px;
+        display: none;
+        padding: 10px;
+        background: #e0f2fe;
+        border-radius: 5px;
+    }
+
+    .questions {
+        margin-top: 15px;
+    }
+
+    .question {
+        margin-bottom: 10px;
+        padding: 10px;
+        border-left: 4px solid #1e40af;
+        background: #f0f9ff;
+        border-radius: 5px;
+    }
+
+    .question p { margin: 5px 0; }
+
+    input[type="text"] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 15px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Pragyanpath.ai</h1>
+    <p>Created by Vishal Shukla</p>
+</header>
+
+<div class="container">
+
+    <!-- Class Section -->
+    <div class="class-section">
+        <h2>Class 1</h2>
+
+        <!-- Subjects -->
+        <div class="subject-section">
+            <h3>Maths</h3>
+            <div class="chapters">
+                <h4>Chapters:</h4>
+                <button onclick="showExplanation('numbers')">Numbers</button>
+                <button onclick="showExplanation('addition')">Addition</button>
+                <button onclick="showExplanation('subtraction')">Subtraction</button>
+                <button onclick="showExplanation('shapes')">Shapes</button>
+                <button onclick="showExplanation('measurement')">Measurement</button>
+                <button onclick="showExplanation('time')">Time</button>
+                <button onclick="showExplanation('money')">Money</button>
+            </div>
+            <div id="numbers" class="explanation">
+                <strong>Numbers:</strong> Numbers are the basic mathematical symbols used for counting and calculation. Example: 1,2,3...
+            </div>
+            <div id="addition" class="explanation">
+                <strong>Addition:</strong> Adding two or more numbers to get the sum. Example: 2 + 3 = 5
+            </div>
+            <div id="subtraction" class="explanation">
+                <strong>Subtraction:</strong> Finding difference between numbers. Example: 5 - 2 = 3
+            </div>
+            <div id="shapes" class="explanation">
+                <strong>Shapes:</strong> Geometrical figures like Circle, Square, Triangle.
+            </div>
+            <div id="measurement" class="explanation">
+                <strong>Measurement:</strong> Measuring length, weight, volume using standard units.
+            </div>
+            <div id="time" class="explanation">
+                <strong>Time:</strong> Learning hours, minutes, seconds.
+            </div>
+            <div id="money" class="explanation">
+                <strong>Money:</strong> Understanding currency, coins, and notes.
+            </div>
+
+            <!-- Questions -->
+            <div class="questions">
+                <h4>Sample Questions (Total 100 Questions Placeholder)</h4>
+                <div class="question">
+                    <p>1. What is 2 + 3?</p>
+                    <p>Options: 4, 5, 6, 3</p>
+                    <p>Answer: 5</p>
+                </div>
+                <div class="question">
+                    <p>2. Which shape has 4 equal sides?</p>
+                    <p>Options: Circle, Triangle, Square, Rectangle</p>
+                    <p>Answer: Square</p>
+                </div>
+                <!-- Add remaining 98 questions here -->
+            </div>
+        </div>
+
+        <!-- Add other subjects in similar blocks -->
+        <div class="subject-section">
+            <h3>English</h3>
+            <div class="chapters">
+                <h4>Chapters:</h4>
+                <button onclick="showExplanation('alphabets')">Alphabets</button>
+                <button onclick="showExplanation('sightwords')">Sight Words</button>
+                <button onclick="showExplanation('reading')">Reading</button>
+                <button onclick="showExplanation('writing')">Writing</button>
+                <button onclick="showExplanation('grammar')">Grammar</button>
+                <button onclick="showExplanation('stories')">Stories</button>
+            </div>
+            <div id="alphabets" class="explanation">
+                <strong>Alphabets:</strong> Learning A-Z letters and their pronunciation.
+            </div>
+            <div id="sightwords" class="explanation">
+                <strong>Sight Words:</strong> Common words that children should recognize instantly.
+            </div>
+            <!-- Add other explanations similarly -->
+        </div>
+
+        <!-- Continue for EVS, Hindi, Computer -->
+    </div>
+</div>
+
+<script>
+function showExplanation(id) {
+    // Hide all first
+    let explanations = document.querySelectorAll('.explanation');
+    explanations.forEach(ex => ex.style.display = 'none');
+
+    // Show selected
+    let element = document.getElementById(id);
+    if(element) element.style.display = 'block';
+}
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pragyanpath.ai - Class 2</title>
+<style>
+    body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f5f5f5; }
+    header { background:#1e3a8a; color:white; text-align:center; padding:20px 0; }
+    header h1 { margin:0; font-size:2rem; }
+    header p { margin:5px 0 0; font-size:1rem; }
+
+    .container { max-width:1200px; margin:20px auto; padding:0 20px; }
+
+    .class-section, .subject-section, .chapter-section {
+        background:white; border-radius:10px; padding:20px; margin-bottom:20px;
+        box-shadow:0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .class-section h2, .subject-section h3, .chapter-section h4 { margin-top:0; }
+
+    .chapters button {
+        background:#2563eb; color:white; border:none; padding:8px 12px; margin:5px; border-radius:5px; cursor:pointer;
+    }
+    .chapters button:hover { background:#1d4ed8; }
+
+    .explanation { margin-top:10px; display:none; padding:10px; background:#e0f2fe; border-radius:5px; }
+
+    .questions { margin-top:15px; }
+    .question { margin-bottom:10px; padding:10px; border-left:4px solid #1e40af; background:#f0f9ff; border-radius:5px; }
+    .question p { margin:5px 0; }
+
+    input[type="text"] { width:100%; padding:8px; margin-bottom:15px; border-radius:5px; border:1px solid #ccc; }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Pragyanpath.ai</h1>
+    <p>Created by Vishal Shukla</p>
+</header>
+
+<div class="container">
+    <!-- Class Section -->
+    <div class="class-section">
+        <h2>Class 2</h2>
+
+        <!-- Maths Subject -->
+        <div class="subject-section">
+            <h3>Maths</h3>
+            <div class="chapters">
+                <h4>Chapters:</h4>
+                <button onclick="showExplanation('math_add_sub')">Addition & Subtraction</button>
+                <button onclick="showExplanation('math_mul_div')">Multiplication & Division</button>
+                <button onclick="showExplanation('math_shapes')">Shapes</button>
+                <button onclick="showExplanation('math_money')">Money</button>
+                <button onclick="showExplanation('math_time')">Time</button>
+                <button onclick="showExplanation('math_data')">Data Handling</button>
+            </div>
+            <div id="math_add_sub" class="explanation">
+                <strong>Addition & Subtraction:</strong> Adding and subtracting numbers to get sum and difference.
+            </div>
+            <div id="math_mul_div" class="explanation">
+                <strong>Multiplication & Division:</strong> Learning times tables, repeated addition and sharing equally.
+            </div>
+            <div id="math_shapes" class="explanation">
+                <strong>Shapes:</strong> Recognizing geometrical shapes like square, rectangle, triangle.
+            </div>
+            <div id="math_money" class="explanation">
+                <strong>Money:</strong> Understanding currency, notes, coins, and simple transactions.
+            </div>
+            <div id="math_time" class="explanation">
+                <strong>Time:</strong> Learning clock reading, hours, minutes, and seconds.
+            </div>
+            <div id="math_data" class="explanation">
+                <strong>Data Handling:</strong> Simple collection, organization and representation of data.
+            </div>
+
+            <!-- Maths Questions -->
+            <div class="questions">
+                <h4>Sample Questions (Total 100 Questions Placeholder)</h4>
+                <div class="question">
+                    <p>1. What is 5 + 3?</p>
+                    <p>Options: 7, 8, 9, 6</p>
+                    <p>Answer: 8</p>
+                </div>
+                <div class="question">
+                    <p>2. Divide 12 by 4.</p>
+                    <p>Options: 2, 3, 4, 6</p>
+                    <p>Answer: 3</p>
+                </div>
+                <!-- Add remaining 98 questions here -->
+            </div>
+        </div>
+
+        <!-- English Subject -->
+        <div class="subject-section">
+            <h3>English</h3>
+            <div class="chapters">
+                <h4>Chapters:</h4>
+                <button onclick="showExplanation('eng_reading')">Reading</button>
+                <button onclick="showExplanation('eng_writing')">Writing</button>
+                <button onclick="showExplanation('eng_grammar')">Grammar</button>
+                <button onclick="showExplanation('eng_stories')">Stories</button>
+                <button onclick="showExplanation('eng_poems')">Poems</button>
+            </div>
+            <div id="eng_reading" class="explanation">
+                <strong>Reading:</strong> Practicing simple sentences, words and short paragraphs.
+            </div>
+            <div id="eng_writing" class="explanation">
+                <strong>Writing:</strong> Learning sentence formation, vocabulary, and spelling.
+            </div>
+            <div id="eng_grammar" class="explanation">
+                <strong>Grammar:</strong> Basic grammar concepts: Nouns, Verbs, Articles, Tenses.
+            </div>
+            <div id="eng_stories" class="explanation">
+                <strong>Stories:</strong> Reading simple stories to develop comprehension and moral understanding.
+            </div>
+            <div id="eng_poems" class="explanation">
+                <strong>Poems:</strong> Reading and understanding rhymes and poems.
+            </div>
+        </div>
+
+        <!-- EVS Subject -->
+        <div class="subject-section">
+            <h3>EVS</h3>
+            <div class="chapters">
+                <h4>Chapters:</h4>
+                <button onclick="showExplanation('evs_plants_animals')">Plants & Animals</button>
+                <button onclick="showExplanation('evs_food')">Food</button>
+                <button onclick="showExplanation('evs_transport')">Transport</button>
+                <button onclick="showExplanation('evs_health')">Health & Hygiene</button>
+                <button onclick="showExplanation('evs_water')">Water</button>
+            </div>
+            <div id="evs_plants_animals" class="explanation">
+                <strong>Plants & Animals:</strong> Introduction to different plants and animals.
+            </div>
+            <div id="evs_food" class="explanation">
+                <strong>Food:</strong> Importance of healthy food and balanced diet.
+            </div>
+            <div id="evs_transport" class="explanation">
+                <strong>Transport:</strong> Different modes of transport: Land, Water, Air.
+            </div>
+            <div id="evs_health" class="explanation">
+                <strong>Health & Hygiene:</strong> Personal hygiene, cleanliness and exercise.
+            </div>
+            <div id="evs_water" class="explanation">
+                <strong>Water:</strong> Uses of water and conservation.
+            </div>
+        </div>
+
+        <!-- Hindi Subject -->
+        <div class="subject-section">
+            <h3>Hindi</h3>
+            <div class="chapters">
+                <h4>Chapters:</h4>
+                <button onclick="showExplanation('hindi_varn')">Varn</button>
+                <button onclick="showExplanation('hindi_shabd')">Shabd</button>
+                <button onclick="showExplanation('hindi_vaakya')">Vaakya</button>
+                <button onclick="showExplanation('hindi_kahani')">Kahani</button>
+                <button onclick="showExplanation('hindi_rhymes')">Rhymes</button>
+            </div>
+            <div id="hindi_varn" class="explanation">
+                <strong>Varn:</strong> Swar & Vyanjan letters of Hindi.
+            </div>
+            <div id="hindi_shabd" class="explanation">
+                <strong>Shabd:</strong> Formation of words in Hindi.
+            </div>
+            <div id="hindi_vaakya" class="explanation">
+                <strong>Vaakya:</strong> Making sentences with correct grammar.
+            </div>
+            <div id="hindi_kahani" class="explanation">
+                <strong>Kahani:</strong> Simple stories for comprehension.
+            </div>
+            <div id="hindi_rhymes" class="explanation">
+                <strong>Rhymes:</strong> Hindi rhymes and poems for fun learning.
+            </div>
+        </div>
+
+        <!-- Computer Subject -->
+        <div class="subject-section">
+            <h3>Computer</h3>
+            <div class="chapters">
+                <h4>Chapters:</h4>
+                <button onclick="showExplanation('comp_intro')">Introduction to Computers</button>
+                <button onclick="showExplanation('comp_typing')">Typing</button>
+                <button onclick="showExplanation('comp_paint')">MS Paint</button>
+                <button onclick="showExplanation('comp_internet')">Basic Internet</button>
+            </div>
+            <div id="comp_intro" class="explanation">
+                <strong>Introduction to Computers:</strong> Basic parts and functions of computer.
+            </div>
+            <div id="comp_typing" class="explanation">
+                <strong>Typing:</strong> Basic typing skills using keyboard.
+            </div>
+            <div id="comp_paint" class="explanation">
+                <strong>MS Paint:</strong> Drawing and coloring using Paint software.
+            </div>
+            <div id="comp_internet" class="explanation">
+                <strong>Basic Internet:</strong> Introduction to browsing and search engines.
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+function showExplanation(id) {
+    let explanations = document.querySelectorAll('.explanation');
+    explanations.forEach(ex => ex.style.display = 'none');
+
+    let element = document.getElementById(id);
+    if(element) element.style.display = 'block';
+}
+</script>
+
+</body>
+</html>
