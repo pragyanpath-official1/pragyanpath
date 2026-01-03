@@ -4485,3 +4485,320 @@ t.style.display = t.innerText.toLowerCase().includes(text) ? 'block' : 'none';
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pragyanpath - Cricket</title>
+<style>
+body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f5f5f5; }
+header { background:#1e3a8a; color:white; text-align:center; padding:20px 0; }
+header h1 { margin:0; font-size:2rem; }
+header p { margin:5px 0 0; font-size:1rem; }
+.container { max-width:1200px; margin:20px auto; padding:0 20px; }
+.subject-section { background:white; border-radius:10px; padding:20px; margin-bottom:20px; box-shadow:0 2px 8px rgba(0,0,0,0.1);}
+.chapters button { background:#2563eb; color:white; border:none; padding:8px 12px; margin:5px; border-radius:5px; cursor:pointer; }
+.chapters button:hover { background:#1d4ed8; }
+.topic { margin-top:10px; display:none; padding:15px; background:#e0f2fe; border-radius:5px; }
+footer { background:#1e3a8a; color:white; text-align:center; padding:15px 0; margin-top:20px; }
+footer a { color:white; margin: 0 10px; text-decoration:none; }
+footer a:hover { text-decoration:underline; }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Pragyanpath</h1>
+    <p>Created by Vishal Shukla</p>
+</header>
+
+<div class="container">
+
+<div class="subject-section">
+<h2>Cricket - Complete Subject</h2>
+
+<div class="chapters">
+<button onclick="openT('formats')">Match Formats (Detailed)</button>
+<button onclick="openT('dismissals')">Ways of Dismissal</button>
+<button onclick="openT('bowling')">Bowling Types</button>
+<button onclick="openT('batting')">Batting Shots</button>
+<button onclick="openT('fielding')">Fielding Skills</button>
+<button onclick="openT('captaincy')">Captaincy & Leadership</button>
+<button onclick="openT('rankings')">ICC Rankings</button>
+<button onclick="openT('laws')">MCC Laws of Cricket</button>
+<button onclick="openT('technology')">Technology in Cricket</button>
+<button onclick="openT('careers')">Cricket Career Paths</button>
+<button onclick="openT('strategy')">Match Strategy & Tactics</button>
+<button onclick="openT('analytics')">Analytics & Statistics</button>
+<button onclick="openT('fitness')">Fitness & Training</button>
+<button onclick="openT('ground')">Ground & Pitch Preparation</button>
+<button onclick="openT('roles')">Player Roles & Specializations</button>
+<button onclick="openT('women')">Women & Domestic Cricket</button>
+</div>
+
+<!-- Topics -->
+<div id="formats" class="topic">
+<b>Match Formats (Detailed):</b><br>
+<b>Definition:</b> Cricket alag-alag time duration aur rule set ke formats me khela jata hai.<br>
+<b>Types:</b> Test (5 days), ODI (50 overs), T20 (20 overs), T10, The Hundred.<br>
+<b>Example:</b> Ashes – Test Series.<br>
+<b>Details:</b> Format ke hisaab se strategy, stamina aur skills change hoti hain.
+</div>
+
+<div id="dismissals" class="topic">
+<b>Ways of Dismissal:</b><br>
+<b>Definition:</b> Batsman ke out hone ke tarike.<br>
+<b>Types:</b> Bowled, Caught, LBW, Run Out, Stumped, Hit Wicket, Obstructing Field.<br>
+<b>Example:</b> Catch out at slips.<br>
+<b>Details:</b> Cricket ke rules ka sabse technical part.
+</div>
+
+<div id="bowling" class="topic">
+<b>Bowling Types:</b><br>
+<b>Definition:</b> Ball dalne ke alag-alag styles.<br>
+<b>Types:</b> Fast, Swing, Seam, Spin (Off-spin, Leg-spin), Yorkers, Bouncers.<br>
+<b>Example:</b> Shane Warne – Leg Spin.<br>
+<b>Details:</b> Bowling variation match ka result badal sakti hai.
+</div>
+
+<div id="batting" class="topic">
+<b>Batting Shots:</b><br>
+<b>Definition:</b> Runs banane ke techniques.<br>
+<b>Types:</b> Cover Drive, Pull, Hook, Cut, Sweep, Reverse Sweep.<br>
+<b>Example:</b> Virat Kohli cover drive.<br>
+<b>Details:</b> Shot selection timing aur field ke hisaab se hoti hai.
+</div>
+
+<div id="fielding" class="topic">
+<b>Fielding Skills:</b><br>
+<b>Definition:</b> Runs rokna aur wicket lena.<br>
+<b>Types:</b> Catching, Throwing, Diving, Ground Fielding, Direct Hits.<br>
+<b>Example:</b> Jonty Rhodes run-out.<br>
+<b>Details:</b> Modern cricket me fielding match winner ban chuki hai.
+</div>
+
+<div id="captaincy" class="topic">
+<b>Captaincy & Leadership:</b><br>
+<b>Definition:</b> Team ko lead karna aur decisions lena.<br>
+<b>Roles:</b> Field setting, bowling change, DRS calls.<br>
+<b>Example:</b> MS Dhoni captaincy.<br>
+<b>Details:</b> Captain match ka brain hota hai.
+</div>
+
+<div id="rankings" class="topic">
+<b>ICC Rankings:</b><br>
+<b>Definition:</b> Teams aur players ki world ranking.<br>
+<b>Types:</b> Test, ODI, T20 rankings.<br>
+<b>Example:</b> India No.1 Test Team.<br>
+<b>Details:</b> Performance based ranking system.
+</div>
+
+<div id="laws" class="topic">
+<b>MCC Laws of Cricket:</b><br>
+<b>Definition:</b> Cricket ke official laws.<br>
+<b>Authority:</b> Marylebone Cricket Club (MCC).<br>
+<b>Example:</b> Law 36 – LBW.<br>
+<b>Details:</b> ICC tournaments MCC laws follow karte hain.
+</div>
+
+<div id="technology" class="topic">
+<b>Technology in Cricket:</b><br>
+<b>Definition:</b> Decision accuracy ke liye technology.<br>
+<b>Types:</b> DRS, Hawk-Eye, Snickometer, UltraEdge, Ball Tracking.<br>
+<b>Example:</b> LBW decision review.<br>
+<b>Details:</b> Errors kam karne ke liye use hoti hai.
+</div>
+
+<div id="careers" class="topic">
+<b>Cricket Career Paths:</b><br>
+<b>Definition:</b> Cricket se judne ke professional options.<br>
+<b>Types:</b> Player, Coach, Umpire, Commentator, Analyst, Physio.<br>
+<b>Example:</b> Harsha Bhogle – Commentator.<br>
+<b>Details:</b> Cricket sirf khel nahi, career bhi hai.
+</div>
+
+<div id="strategy" class="topic">
+<b>Match Strategy & Tactics:</b><br>
+<b>Definition:</b> Game ko jeetne ke liye planning.<br>
+<b>Types:</b> Batting order, Bowling plan, Field placement.<br>
+<b>Example:</b> India vs Australia ODI strategy.<br>
+<b>Details:</b> Har match ke liye tactical planning alag hoti hai.
+</div>
+
+<div id="analytics" class="topic">
+<b>Analytics & Statistics:</b><br>
+<b>Definition:</b> Player aur match performance ka analysis.<br>
+<b>Types:</b> Batting average, Strike rate, Economy, Win/Loss ratio.<br>
+<b>Example:</b> Virat Kohli ODI batting average.<br>
+<b>Details:</b> Team selection aur strategy me important hai.
+</div>
+
+<div id="fitness" class="topic">
+<b>Fitness & Training:</b><br>
+<b>Definition:</b> Physical aur mental fitness for cricket.<br>
+<b>Types:</b> Endurance, Strength, Agility, Reflexes.<br>
+<b>Example:</b> Net practice, Gym, Field drills.<br>
+<b>Details:</b> Professional players ke liye must.
+</div>
+
+<div id="ground" class="topic">
+<b>Ground & Pitch Preparation:</b><br>
+<b>Definition:</b> Match ke liye pitch aur field ready karna.<br>
+<b>Types:</b> Grass pitch, Dry pitch, Hard pitch.<br>
+<b>Example:</b> Lord’s Test pitch preparation.<br>
+<b>Details:</b> Pitch ka nature match outcome affect karta hai.
+</div>
+
+<div id="roles" class="topic">
+<b>Player Roles & Specializations:</b><br>
+<b>Definition:</b> Team me player ka role aur specialization.<br>
+<b>Types:</b> Batsman, Bowler, All-rounder, Wicketkeeper.<br>
+<b>Example:</b> Ben Stokes – All-rounder.<br>
+<b>Details:</b> Team balance aur strategy me important hai.
+</div>
+
+<div id="women" class="topic">
+<b>Women & Domestic Cricket:</b><br>
+<b>Definition:</b> Women’s cricket aur domestic tournaments.<br>
+<b>Types:</b> Women World Cup, T20, Ranji, Vijay Hazare, Syed Mushtaq Ali.<br>
+<b>Example:</b> Mithali Raj ODI century.<br>
+<b>Details:</b> Women cricket bhi professional aur popular hai.
+</div>
+
+</div>
+</div>
+
+<footer>
+<p>Created by Vishal Shukla | <a href="#">About Us</a> | <a href="#">Contact Us</a> | <a href="#">Privacy Policy</a> | <a href="#">Login</a></p>
+</footer>
+
+<script>
+function openT(id){
+    let topics = document.querySelectorAll('.topic');
+    topics.forEach(t => t.style.display='none');
+    let el = document.getElementById(id);
+    if(el) el.style.display='block';
+}
+</script>
+
+</body>
+</html>
+<!-- Add this after the previous Cricket topics divs -->
+
+<div class="subject-section">
+<h2>Cricket Online Test & Player Comparison</h2>
+
+<div class="chapters">
+    <button onclick="openT('onlineTest')">Online Test</button>
+    <button onclick="openT('playerCompare')">Player vs Player Comparison</button>
+</div>
+
+<div id="onlineTest" class="topic">
+<b>Online Test:</b><br>
+<b>Definition:</b> Players can attempt multiple choice questions (MCQs) on Cricket topics.<br>
+<b>Details:</b> Questions can cover Rules, Formats, Players, Records, Strategy.<br>
+<b>Example:</b> "Who scored the fastest century in ODI?"<br><br>
+
+<label>Enter your name:</label>
+<input type="text" id="playerName" placeholder="Your Name">
+<button onclick="startTest()">Start Test</button>
+
+<div id="testArea" style="display:none; margin-top:15px;">
+    <div id="questionBox"></div>
+    <button onclick="nextQuestion()">Next</button>
+    <p id="scoreDisplay"></p>
+</div>
+</div>
+
+<div id="playerCompare" class="topic">
+<b>Player vs Player Comparison:</b><br>
+<b>Definition:</b> Compare knowledge & scores of two or more players.<br>
+<b>Details:</b> You can track who knows what, test performance, and generate comparison reports.<br><br>
+
+<label>Player 1 Name:</label>
+<input type="text" id="player1" placeholder="Player 1">
+<label>Player 2 Name:</label>
+<input type="text" id="player2" placeholder="Player 2">
+<button onclick="comparePlayers()">Compare</button>
+
+<div id="comparisonResult" style="margin-top:15px;"></div>
+</div>
+</div>
+
+<script>
+// Online Test Data Example
+const testQuestions = [
+    {
+        q: "Who has the highest ODI runs?",
+        options: ["Sachin Tendulkar", "Virat Kohli", "Rohit Sharma", "Brian Lara"],
+        answer: "Sachin Tendulkar"
+    },
+    {
+        q: "Which is a T20 tournament?",
+        options: ["IPL", "Ashes", "The Hundred", "Ranji Trophy"],
+        answer: "IPL"
+    },
+    {
+        q: "What is LBW?",
+        options: ["Out by leg before wicket", "Catch out", "Run Out", "Stumped"],
+        answer: "Out by leg before wicket"
+    }
+];
+
+let currentQ = 0;
+let score = 0;
+let playerScores = {};
+
+function startTest() {
+    const name = document.getElementById('playerName').value;
+    if(!name) { alert("Enter your name"); return; }
+    document.getElementById('testArea').style.display='block';
+    currentQ = 0; score = 0;
+    showQuestion();
+    playerScores[name] = 0;
+}
+
+function showQuestion() {
+    if(currentQ >= testQuestions.length){
+        document.getElementById('questionBox').innerHTML = "Test Completed!";
+        const name = document.getElementById('playerName').value;
+        playerScores[name] = score;
+        document.getElementById('scoreDisplay').innerText = `${name} Score: ${score} / ${testQuestions.length}`;
+        return;
+    }
+    const q = testQuestions[currentQ];
+    let html = `<b>Q${currentQ+1}: ${q.q}</b><br>`;
+    q.options.forEach(opt => {
+        html += `<input type="radio" name="opt" value="${opt}"> ${opt}<br>`;
+    });
+    document.getElementById('questionBox').innerHTML = html;
+}
+
+function nextQuestion() {
+    const q = testQuestions[currentQ];
+    const opts = document.getElementsByName('opt');
+    let selected = '';
+    opts.forEach(o => { if(o.checked) selected = o.value; });
+    if(selected === q.answer) score++;
+    currentQ++;
+    showQuestion();
+}
+
+// Player Comparison
+function comparePlayers() {
+    const p1 = document.getElementById('player1').value;
+    const p2 = document.getElementById('player2').value;
+    if(!p1 || !p2){ alert("Enter both player names"); return; }
+    const score1 = playerScores[p1] || 0;
+    const score2 = playerScores[p2] || 0;
+    let winner = "Tie";
+    if(score1 > score2) winner = p1 + " wins";
+    else if(score2 > score1) winner = p2 + " wins";
+    document.getElementById('comparisonResult').innerHTML = `
+        <b>${p1}:</b> ${score1} / ${testQuestions.length}<br>
+        <b>${p2}:</b> ${score2} / ${testQuestions.length}<br>
+        <b>Result:</b> ${winner}
+    `;
+}
+</script>
