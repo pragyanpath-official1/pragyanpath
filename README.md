@@ -1,2 +1,2 @@
-# ai-education-website
-Free AI education website for students
+# -education-website
+Free  education website for students
