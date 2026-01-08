@@ -1,233 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Pragyanpath – Learning Platform</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>PragyanPath</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  font-family:Inter,Arial,sans-serif;
-}
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f6fa;
+  }
+  .screen {
+    display: none;
+    min-height: 100vh;
+    padding: 20px;
+  }
+  .active { display: block; }
 
-body{
-  margin:0;
-  background:#0f172a;
-  color:#0f172a;
-}
+  .center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 
-/* ===== LOGIN SCREEN ===== */
-.login-screen{
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:20px;
-  background:
-    radial-gradient(circle at top,#1e293b,#020617);
-}
+  /* Splash */
+  #splash {
+    background: linear-gradient(#1F2A69, #3B5BDB);
+    color: white;
+  }
 
-.login-box{
-  width:100%;
-  max-width:520px;
-  background:#ffffff;
-  padding:50px 40px;
-  border-radius:20px;
-  box-shadow:0 40px 120px rgba(0,0,0,.5);
-  text-align:center;
-}
+  /* Login */
+  input {
+    width: 100%;
+    max-width: 320px;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+  }
 
-/* BIG BRANDING */
-.brand{
-  font-size:46px;
-  font-weight:900;
-  letter-spacing:2px;
-  color:#020617;
-}
+  button {
+    padding: 12px 20px;
+    border-radius: 10px;
+    border: none;
+    background: #3B5BDB;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+  }
 
-.sub{
-  margin-top:6px;
-  font-size:15px;
-  color:#64748b;
-  margin-bottom:35px;
-}
+  /* Cards */
+  .card {
+    background: white;
+    padding: 16px;
+    border-radius: 14px;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  }
 
-.input{
-  width:100%;
-  padding:17px;
-  margin:14px 0;
-  border-radius:12px;
-  border:1px solid #cbd5e1;
-  font-size:16px;
-}
-
-.input:focus{
-  outline:none;
-  border-color:#2563eb;
-}
-
-.btn{
-  width:100%;
-  padding:17px;
-  margin-top:12px;
-  border:none;
-  border-radius:12px;
-  background:#2563eb;
-  color:#fff;
-  font-size:17px;
-  font-weight:600;
-  cursor:pointer;
-}
-
-.btn:hover{
-  background:#1d4ed8;
-}
-
-/* ===== HOME ===== */
-.home{
-  display:none;
-  min-height:100vh;
-  padding:40px 20px;
-  background:#f8fafc;
-}
-
-.top{
-  max-width:1000px;
-  margin:auto;
-  text-align:center;
-}
-
-.search{
-  width:100%;
-  padding:18px;
-  font-size:16px;
-  border-radius:14px;
-  border:1px solid #cbd5e1;
-}
-
-.explain{
-  margin-top:18px;
-  padding:16px 28px;
-  background:#020617;
-  color:#fff;
-  border:none;
-  border-radius:14px;
-  font-size:16px;
-  cursor:pointer;
-}
-
-.classes{
-  margin-top:40px;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
-  gap:20px;
-}
-
-.class-box{
-  background:#ffffff;
-  padding:24px;
-  border-radius:18px;
-  font-weight:600;
-  box-shadow:0 15px 40px rgba(0,0,0,.1);
-  cursor:pointer;
-}
-
-.class-box:hover{
-  transform:translateY(-6px);
-  transition:.3s;
-}
-
-footer{
-  margin-top:50px;
-  color:#64748b;
-  font-size:14px;
-}
+  /* Bottom Nav */
+  .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    border-top: 1px solid #ddd;
+  }
+  .bottom-nav button {
+    background: none;
+    color: #333;
+  }
 </style>
 </head>
 
 <body>
 
+<!-- SPLASH -->
+<div id="splash" class="screen active center">
+  <h1>PRAGYANPATH</h1>
+  <p>Smart Learning Platform</p>
+</div>
+
 <!-- LOGIN -->
-<div class="login-screen" id="loginScreen">
-  <div class="login-box">
-
-    <div class="brand">PRAGYANPATH</div>
-    <div class="sub">India’s Smart Learning Platform</div>
-
-    <input id="loginInput" class="input"
-      placeholder="Login with Email or Mobile Number">
-
-    <div id="passwordBox" style="display:none">
-      <input class="input" type="password"
-        placeholder="Enter Password">
-    </div>
-
-    <div id="otpBox" style="display:none">
-      <input class="input" placeholder="Enter OTP">
-    </div>
-
-    <button class="btn" onclick="continueLogin()">Continue</button>
-
-  </div>
+<div id="login" class="screen center">
+  <h2>Login</h2>
+  <input placeholder="Mobile / Email"/>
+  <button onclick="goHome()">Continue</button>
 </div>
 
 <!-- HOME -->
-<div class="home" id="home">
-  <div class="top">
+<div id="home" class="screen">
+  <h2>Dashboard</h2>
+  <div class="card">Class 6 – Maths • Science</div>
+  <div class="card">Class 7 – English • SST</div>
+  <div class="card">Class 8 – All Subjects</div>
+</div>
 
-    <h1 style="font-size:38px;font-weight:900;">
-      Welcome to PRAGYANPATH
-    </h1>
+<!-- CLASSES -->
+<div id="classes" class="screen center">
+  <h2>Classes</h2>
+  <p>All Classes Here</p>
+</div>
 
-    <p style="color:#64748b;margin-bottom:30px;">
-      Learn anything from Class 1 to 12 – Smartly
-    </p>
+<!-- PROFILE -->
+<div id="profile" class="screen center">
+  <h2>Profile</h2>
+  <p>Student Progress</p>
+</div>
 
-    <input class="search" placeholder="Search any topic…">
-    <br>
-    <button class="explain">Explain Topic</button>
-
-    <div class="classes">
-      <div class="class-box">Class 1</div>
-      <div class="class-box">Class 2</div>
-      <div class="class-box">Class 3</div>
-      <div class="class-box">Class 4</div>
-      <div class="class-box">Class 5</div>
-      <div class="class-box">Class 6</div>
-      <div class="class-box">Class 7</div>
-      <div class="class-box">Class 8</div>
-      <div class="class-box">Class 9</div>
-      <div class="class-box">Class 10</div>
-      <div class="class-box">Class 11</div>
-      <div class="class-box">Class 12</div>
-    </div>
-
-    <footer>
-      © Pragyanpath | Learning for Everyone
-    </footer>
-  </div>
+<!-- BOTTOM NAV -->
+<div class="bottom-nav">
+  <button onclick="show('home')">Home</button>
+  <button onclick="show('classes')">Classes</button>
+  <button onclick="show('profile')">Profile</button>
 </div>
 
 <script>
-function continueLogin(){
-  let v=document.getElementById("loginInput").value.trim();
-  if(v==="") return alert("Enter Email or Mobile");
+  setTimeout(() => {
+    document.getElementById('splash').classList.remove('active');
+    document.getElementById('login').classList.add('active');
+  }, 2000);
 
-  if(v.includes("@")){
-    document.getElementById("passwordBox").style.display="block";
-    document.getElementById("otpBox").style.display="none";
-  }else{
-    document.getElementById("otpBox").style.display="block";
-    document.getElementById("passwordBox").style.display="none";
-    alert("OTP sent (demo)");
+  function goHome() {
+    show('home');
   }
 
-  setTimeout(()=>{
-    document.getElementById("loginScreen").style.display="none";
-    document.getElementById("home").style.display="block";
-  },1500);
-}
+  function show(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
 </script>
 
 </body>
