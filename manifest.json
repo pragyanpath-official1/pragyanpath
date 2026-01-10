@@ -1,10 +1,10 @@
 {
-  "name": "Pragyanpath – Complete Education Mission",
+  "name": "Pragyanpath",
   "short_name": "Pragyanpath",
-  "description": "Complete Education App for Class 1 to 12, Competitive Exams, Skills, Life Skills & Chess Learning with ELO.",
+  "description": "Complete Education App: School + Competitive + Skills + Life",
   "start_url": "index.html",
   "display": "standalone",
-  "background_color": "#FFFFFF",
+  "background_color": "#ffffff",
   "theme_color": "#f4b400",
   "icons": [
     {
