@@ -1,9 +1,0 @@
-console.log("Chess logic loaded");
-
-// Placeholder
-let elo = 800;
-function updateElo(result) {
-  if (result === "win") elo += 10;
-  if (result === "loss") elo -= 10;
-  console.log("Current ELO:", elo);
-}
