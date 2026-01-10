@@ -79,3 +79,4 @@ function showLeaderboard() {
 }
 
 showLeaderboard();
+savePlayer("Student 1");
