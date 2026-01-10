@@ -11,6 +11,7 @@
 <!-- Google Font -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
+<!-- CSS -->
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
 body{background:#f5f8fc;color:#222}
@@ -73,6 +74,27 @@ padding:8px 16px;border-radius:6px;text-decoration:none
 .chess{
 background:#eef4ff;border-radius:18px;padding:40px;margin-top:40px
 }
+#chessBoard {
+  display: grid;
+  grid-template-columns: repeat(8, 40px);
+  grid-template-rows: repeat(8, 40px);
+  gap: 2px;
+  margin-top: 10px;
+  background: #444;
+  width: max-content;
+}
+.square {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  cursor: pointer;
+}
+.square.white { background: #eee; }
+.square.black { background: #555; color: white; }
+.square.highlight { border: 2px solid orange; }
 
 /* Footer */
 footer{
@@ -84,6 +106,21 @@ footer a{color:#ccc;text-decoration:none;font-size:14px}
 display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px
 }
 .copy{text-align:center;margin-top:20px;font-size:13px;color:#bbb}
+
+/* Install App Button */
+#installBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  background: #f4b400;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  display: none;
+  z-index: 999;
+}
 </style>
 </head>
 
@@ -176,6 +213,29 @@ Students improve focus, strategy and logic while tracking progress through an EL
 <li>• Daily Chess Puzzles</li>
 <li>• ELO based Skill Progress</li>
 </ul>
+
+<h4>Your Chess ELO: <span id="eloScore">800</span></h4>
+<button onclick="updateElo('win')">Win</button>
+<button onclick="updateElo('loss')">Lose</button>
+<button onclick="updateElo('draw')">Draw</button>
+
+<h3>Chess Skill Test</h3>
+<p>Q1: Chess board me kitne squares hote hain?</p>
+<button onclick="answerQuiz(true)">64</button>
+<button onclick="answerQuiz(false)">72</button>
+<p id="quizResult"></p>
+
+<h4>Level: <span id="chessLevel"></span></h4>
+<h3>Local Chess Leaderboard</h3>
+<ul id="leaderboard"></ul>
+
+<section id="chessGameSection">
+<h2>Chess Mini-Game</h2>
+<p>Level: <span id="chessLevel"></span></p>
+<p>ELO: <span id="chessElo"></span></p>
+<div id="chessBoard"></div>
+<button onclick="startNewGame()">Start New Game</button>
+</section>
 </div>
 
 </section>
@@ -202,30 +262,72 @@ Students improve focus, strategy and logic while tracking progress through an EL
 </div>
 </footer>
 
+<!-- Install App Button -->
+<button id="installBtn">Install App</button>
+
+<!-- Scripts -->
+<script src="assets/js/chess.js"></script>
+<script>
+// ===== Service Worker =====
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('assets/js/sw.js')
+    .then(function(registration) {
+      console.log('ServiceWorker registered: ', registration);
+    }).catch(function(error) {
+      console.log('ServiceWorker registration failed: ', error);
+    });
+  });
+}
+
+// ===== Install PWA Popup =====
+let deferredPrompt;
+const addBtn = document.getElementById('installBtn');
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  addBtn.style.display = "block";
+});
+
+addBtn.addEventListener('click', async () => {
+  addBtn.style.display = 'none';
+  deferredPrompt.prompt();
+  const { outcome } = await deferredPrompt.userChoice;
+  console.log('User response to the install prompt:', outcome);
+  deferredPrompt = null;
+});
+
+// ===== Chess ELO & Quiz Scripts =====
+let eloScore = 800;
+let chessLevel = "Beginner";
+
+function updateElo(result){
+  if(result==="win") eloScore += 10;
+  else if(result==="loss") eloScore -= 10;
+  else if(result==="draw") eloScore += 0;
+  document.getElementById("eloScore").innerText = eloScore;
+  updateChessLevel();
+}
+
+function updateChessLevel(){
+  if(eloScore<1000) chessLevel="Beginner";
+  else if(eloScore<1500) chessLevel="Intermediate";
+  else chessLevel="Advanced";
+  document.getElementById("chessLevel").innerText = chessLevel;
+}
+
+function answerQuiz(isCorrect){
+  const resultEl = document.getElementById("quizResult");
+  if(isCorrect) resultEl.innerText = "Correct! ✔";
+  else resultEl.innerText = "Wrong ❌";
+}
+
+// Chess Mini-game logic placeholder
+function startNewGame(){
+  alert("Chess Mini-Game starting... (Implement your logic here)");
+}
+</script>
+
 </body>
-  </html>
-  <h4>Your Chess ELO: <span id="eloScore">800</span></h4>
-
-<button onclick="updateElo('win')">Win</button>
-<button onclick="updateElo('loss')">Lose</button>
-<button onclick="updateElo('draw')">Draw</button>
-<h3>Chess Skill Test</h3>
-
-<p>Q1: Chess board me kitne squares hote hain?</p>
-<button onclick="answerQuiz(true)">64</button>
-<button onclick="answerQuiz(false)">72</button>
-
-<p id="quizResult"></p>
-
-<h4>Level: <span id="chessLevel"></span></h4>
-<h3>Local Chess Leaderboard</h3>
-<ul id="leaderboard"></ul>
-<section id="chessGameSection">
-  <h2>Chess Mini-Game</h2>
-  <p>Level: <span id="chessLevel"></span></p>
-  <p>ELO: <span id="chessElo"></span></p>
-
-  <div id="chessBoard"></div>
-
-  <button onclick="startNewGame()">Start New Game</button>
-</section>
+</html>
