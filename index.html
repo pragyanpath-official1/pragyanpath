@@ -265,15 +265,15 @@ Students improve focus, strategy and logic while tracking progress through an EL
 <script src="assets/js/chess.js"></script>
 <script>
 // ===== Service Worker =====
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', function() {
-    navigator.serviceWorker.register('assets/js/service-worker.js')
-    .then(function(registration) {
-      console.log('ServiceWorker registered: ', registration);
-    }).catch(function(error) {
-      console.log('ServiceWorker registration failed: ', error);
-    });
-  });
+if ('serviceWorker' in navigator) {    
+  window.addEventListener('load', function() {    
+    navigator.serviceWorker.register('assets/js/sw.js')    
+    .then(function(registration) {    
+      console.log('ServiceWorker registered: ', registration);    
+    }).catch(function(error) {    
+      console.log('ServiceWorker registration failed: ', error);    
+    });    
+  });    
 }
 
 // ===== Install PWA Popup =====
