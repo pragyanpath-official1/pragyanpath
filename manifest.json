@@ -1,11 +1,12 @@
 {
   "name": "Pragyanpath",
   "short_name": "Pragyanpath",
-  "description": "Complete Education App: School + Competitive + Skills + Life",
-  "start_url": "index.html",
+  "description": "Pragyanpath is an educational app with learning content, games, and smart tools for students.",
+  "start_url": "/index.html",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#f4b400",
+  "theme_color": "#0d6efd",
+  "orientation": "portrait",
   "icons": [
     {
       "src": "assets/images/icon-192.png",
