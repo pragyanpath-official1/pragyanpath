@@ -1,4 +1,51 @@
-/* Pragyanpath main CSS */
+/* ===== BODY ===== */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', system-ui, Arial, sans-serif;
+  background: #f4f6f8;
+}
+
+/* ===== HEADER ===== */
+.top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* ===== LOGO AREA ===== */
+.logo-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-box img {
+  height: 48px;
+  width: auto;
+  display: block;
+}
+
+/* ===== BRAND NAME ===== */
+.brand-name {
+  font-size: 24px;
+  font-weight: 800;
+  color: #111827;
+}
+
+/* ===== LOGIN BUTTON ===== */
+.login-btn {
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: #facc15; /* yellow */
+  color: #000;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+/* ===== HERO SECTION ===== */
 .hero-section {
   padding: 80px 20px;
   text-align: center;
