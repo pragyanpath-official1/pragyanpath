@@ -1,1 +1,19 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #f5f5f5; /* light bg */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
 
+.navbar .logo-img {
+  height: 50px;  /* size adjust karo */
+  width: auto;
+  margin-right: 15px;
+}
+
+.navbar .logo-text {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
